@@ -1,0 +1,23 @@
+{
+  "GuestReviews_Employees_searchText": "Funcionários",
+  "GuestReviews_Comfort_searchText": "Conforto",
+  "GuestReviews_Amenities_searchText": "Comodidades",
+  "GuestReviews_Cleaning_searchText": "Limpeza",
+  "GuestReviews_CostBenefit_searchText": "Custo-benefício",
+  "GuestReviews_Location_searchText": "Localização",
+  "CounterThread": "5",
+  "HotelAddressClassName": "hp_address_subtitle js-hp_address_subtitle jq_tooltip",
+  "GuestReviews_NumberOfReviewsClassName": "b5cd09854e c90c0a70d3 db63693c62",
+  "GuestReviews_NumberOfReviewsReplace": " avaliações",
+  "GuestReviews_RatingClassName": "b5cd09854e d10a6220b4",
+  "ListResultsSelectors": "div.d46673fe81",
+  "TypeGuestReviewsClassName": "d6d4671780",
+  "GuestReviews_EmployeesClassName": "ee746850b6 b8eef6afe1",
+  "GuestReviews_ComfortClassName": "ee746850b6 b8eef6afe1",
+  "GuestReviews_AmenitiesClassName": "ee746850b6 b8eef6afe1",
+  "GuestReviews_CleaningClassName": "ee746850b6 b8eef6afe1",
+  "GuestReviews_CostBenefitClassName": "ee746850b6 b8eef6afe1",
+  "GuestReviews_LocationClassName": "ee746850b6 b8eef6afe1",
+  "ListResultsDivID": "guest-featured_reviews__horizontal-block",
+  "ListResultsDivLocalName": "div"
+}

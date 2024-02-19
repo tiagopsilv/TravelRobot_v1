@@ -1,0 +1,13 @@
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\bin\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.deps.json
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\bin\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\bin\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\bin\Debug\netcoreapp3.1\TravelRobot.Domain.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\bin\Debug\netcoreapp3.1\TravelRobot.Domain.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\obj\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.csproj.AssemblyReference.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\obj\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\obj\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.AssemblyInfoInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\obj\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.AssemblyInfo.cs
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\obj\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.csproj.CoreCompileInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\obj\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.csproj.CopyComplete
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\obj\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.ReadData.Decolar\obj\Debug\netcoreapp3.1\TravelRobot.Infra.ReadData.Decolar.pdb

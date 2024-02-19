@@ -1,0 +1,239 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.DataExtraction.Smiles\\TravelRobot.Infra.DataExtraction.Smiles.csproj": {}
+  },
+  "projects": {
+    "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Domain\\TravelRobot.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Domain\\TravelRobot.Domain.csproj",
+        "projectName": "TravelRobot.Domain",
+        "projectPath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Domain\\TravelRobot.Domain.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.DataExtraction.Smiles\\TravelRobot.Infra.DataExtraction.Smiles.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.DataExtraction.Smiles\\TravelRobot.Infra.DataExtraction.Smiles.csproj",
+        "projectName": "TravelRobot.Infra.DataExtraction.Smiles",
+        "projectPath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.DataExtraction.Smiles\\TravelRobot.Infra.DataExtraction.Smiles.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.DataExtraction.Smiles\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Domain\\TravelRobot.Domain.csproj": {
+                "projectPath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Domain\\TravelRobot.Domain.csproj"
+              },
+              "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.Selenium\\TravelRobot.Infra.Selenium.csproj": {
+                "projectPath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.Selenium\\TravelRobot.Infra.Selenium.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[0.16.1, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.Selenium\\TravelRobot.Infra.Selenium.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.Selenium\\TravelRobot.Infra.Selenium.csproj",
+        "projectName": "TravelRobot.Infra.Selenium",
+        "projectPath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.Selenium\\TravelRobot.Infra.Selenium.csproj",
+        "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
+        "outputPath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.Selenium\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Domain\\TravelRobot.Domain.csproj": {
+                "projectPath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Domain\\TravelRobot.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "Selenium.WebDriver.ChromeDriver": {
+              "target": "Package",
+              "version": "[108.0.5359.7100, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[4.0.1, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

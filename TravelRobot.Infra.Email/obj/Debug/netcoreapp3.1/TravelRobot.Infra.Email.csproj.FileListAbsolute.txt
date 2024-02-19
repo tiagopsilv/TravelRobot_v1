@@ -1,0 +1,13 @@
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\bin\Debug\netcoreapp3.1\TravelRobot.Infra.Email.deps.json
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\bin\Debug\netcoreapp3.1\TravelRobot.Infra.Email.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\bin\Debug\netcoreapp3.1\TravelRobot.Infra.Email.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Email.csproj.AssemblyReference.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Email.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Email.AssemblyInfoInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Email.AssemblyInfo.cs
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Email.csproj.CoreCompileInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Email.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Email.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\bin\Debug\netcoreapp3.1\TravelRobot.Domain.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\bin\Debug\netcoreapp3.1\TravelRobot.Domain.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Email\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Email.csproj.CopyComplete

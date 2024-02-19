@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "TravelRobot.Infra.ReadData.Decolar/1.0.0": {
+        "dependencies": {
+          "TravelRobot.Domain": "1.0.0"
+        },
+        "runtime": {
+          "TravelRobot.Infra.ReadData.Decolar.dll": {}
+        }
+      },
+      "TravelRobot.Domain/1.0.0": {
+        "runtime": {
+          "TravelRobot.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TravelRobot.Infra.ReadData.Decolar/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TravelRobot.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,13 @@
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\bin\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.deps.json
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\bin\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\bin\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\bin\Debug\netcoreapp3.1\TravelRobot.Domain.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\bin\Debug\netcoreapp3.1\TravelRobot.Domain.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.csproj.AssemblyReference.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.AssemblyInfoInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.AssemblyInfo.cs
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.csproj.CoreCompileInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.csproj.CopyComplete
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Booking\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Booking.pdb

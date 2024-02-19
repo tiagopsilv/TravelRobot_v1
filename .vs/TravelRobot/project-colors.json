@@ -1,0 +1,81 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ada1a6fc-f544-42a2-a415-20523f516028": {
+      "ProjectGuid": "ada1a6fc-f544-42a2-a415-20523f516028",
+      "DisplayName": "TravelRobot",
+      "ColorIndex": 0
+    },
+    "c076f597-3a10-4aa1-bda4-4cadd9942bb5": {
+      "ProjectGuid": "c076f597-3a10-4aa1-bda4-4cadd9942bb5",
+      "DisplayName": "TravelRobot.Domain",
+      "ColorIndex": 1
+    },
+    "7779071d-079f-44a6-8569-800c3b529b26": {
+      "ProjectGuid": "7779071d-079f-44a6-8569-800c3b529b26",
+      "DisplayName": "TravelRobot.Infra.DataExtraction.Decolar",
+      "ColorIndex": 2
+    },
+    "d9f8dd0a-d8a5-44f9-aa51-52c8ad6093f2": {
+      "ProjectGuid": "d9f8dd0a-d8a5-44f9-aa51-52c8ad6093f2",
+      "DisplayName": "TravelRobot.Service.Major",
+      "ColorIndex": 3
+    },
+    "95045ffb-5178-4682-b11e-85611772ffc5": {
+      "ProjectGuid": "95045ffb-5178-4682-b11e-85611772ffc5",
+      "DisplayName": "TravelRobot.Infra.File",
+      "ColorIndex": 4
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Arquivos Diversos",
+      "ColorIndex": -1
+    },
+    "fa7dad6d-ea0d-4144-944e-5d8af19ae399": {
+      "ProjectGuid": "fa7dad6d-ea0d-4144-944e-5d8af19ae399",
+      "DisplayName": "TravelRobot.CrossCutting",
+      "ColorIndex": 5
+    },
+    "07dd23ed-1a0d-4b3e-880c-aeb8d09d9029": {
+      "ProjectGuid": "07dd23ed-1a0d-4b3e-880c-aeb8d09d9029",
+      "DisplayName": "TravelRobot.Application",
+      "ColorIndex": 6
+    },
+    "8f81daf2-2650-450d-95cd-22a981b00142": {
+      "ProjectGuid": "8f81daf2-2650-450d-95cd-22a981b00142",
+      "DisplayName": "TravelRobot.Infra.Selenium",
+      "ColorIndex": 7
+    },
+    "a767d989-bb87-40a1-8f6f-1e739268bc3c": {
+      "ProjectGuid": "a767d989-bb87-40a1-8f6f-1e739268bc3c",
+      "DisplayName": "TravelRobot.Infra.Email",
+      "ColorIndex": 8
+    },
+    "8cd3ae44-6891-41fe-bbfc-41e7735d055e": {
+      "ProjectGuid": "8cd3ae44-6891-41fe-bbfc-41e7735d055e",
+      "DisplayName": "TravelRobot.Infra.ReadData",
+      "ColorIndex": 9
+    },
+    "53864d98-3de1-445a-8570-c1555a938290": {
+      "ProjectGuid": "53864d98-3de1-445a-8570-c1555a938290",
+      "DisplayName": "TravelRobot.Infra.DataExtraction.Smiles",
+      "ColorIndex": 10
+    },
+    "123ba189-83f2-45ea-b339-efa14e96e3b9": {
+      "ProjectGuid": "123ba189-83f2-45ea-b339-efa14e96e3b9",
+      "DisplayName": "TravelRobot.Infra.DataExtraction.Google",
+      "ColorIndex": 11
+    },
+    "722b525f-88c9-4e43-b4b2-3f59d7116bf5": {
+      "ProjectGuid": "722b525f-88c9-4e43-b4b2-3f59d7116bf5",
+      "DisplayName": "TravelRobot.Infra.DataExtraction.Booking",
+      "ColorIndex": 12
+    },
+    "0c996b92-092a-4a3d-b011-b15537a814ad": {
+      "ProjectGuid": "0c996b92-092a-4a3d-b011-b15537a814ad",
+      "DisplayName": "TravelRobot.Infra.Parameter",
+      "ColorIndex": 13
+    }
+  },
+  "NextColorIndex": 14
+}

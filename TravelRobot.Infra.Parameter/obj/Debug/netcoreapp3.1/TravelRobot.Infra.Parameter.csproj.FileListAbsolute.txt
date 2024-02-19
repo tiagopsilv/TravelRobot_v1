@@ -1,0 +1,13 @@
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\bin\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.deps.json
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\bin\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\bin\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\bin\Debug\netcoreapp3.1\TravelRobot.Domain.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\bin\Debug\netcoreapp3.1\TravelRobot.Domain.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.csproj.AssemblyReference.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.AssemblyInfoInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.AssemblyInfo.cs
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.csproj.CoreCompileInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.csproj.CopyComplete
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.Parameter\obj\Debug\netcoreapp3.1\TravelRobot.Infra.Parameter.pdb

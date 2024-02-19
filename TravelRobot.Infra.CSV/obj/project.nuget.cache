@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "RrjajY3mTpinjKdv/2p0GQTm7e/osDcKDbES3S4+asQxO4Z5Rv9QbrfqKv21FxPIRUcS9I/A5vqYd1liqOttgw==",
+  "success": true,
+  "projectFilePath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.CSV\\TravelRobot.Infra.File.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dell\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\serilog.sinks.console\\4.0.1\\serilog.sinks.console.4.0.1.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\serilog.sinks.file\\5.0.0\\serilog.sinks.file.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

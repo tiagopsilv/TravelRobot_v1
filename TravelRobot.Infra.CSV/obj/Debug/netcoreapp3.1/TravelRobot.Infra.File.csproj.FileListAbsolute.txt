@@ -1,0 +1,13 @@
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\bin\Debug\netcoreapp3.1\TravelRobot.Infra.File.deps.json
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\bin\Debug\netcoreapp3.1\TravelRobot.Infra.File.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\bin\Debug\netcoreapp3.1\TravelRobot.Infra.File.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\bin\Debug\netcoreapp3.1\TravelRobot.Domain.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\bin\Debug\netcoreapp3.1\TravelRobot.Domain.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\obj\Debug\netcoreapp3.1\TravelRobot.Infra.File.csproj.AssemblyReference.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\obj\Debug\netcoreapp3.1\TravelRobot.Infra.File.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\obj\Debug\netcoreapp3.1\TravelRobot.Infra.File.AssemblyInfoInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\obj\Debug\netcoreapp3.1\TravelRobot.Infra.File.AssemblyInfo.cs
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\obj\Debug\netcoreapp3.1\TravelRobot.Infra.File.csproj.CoreCompileInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\obj\Debug\netcoreapp3.1\TravelRobot.Infra.File.csproj.CopyComplete
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\obj\Debug\netcoreapp3.1\TravelRobot.Infra.File.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.CSV\obj\Debug\netcoreapp3.1\TravelRobot.Infra.File.pdb

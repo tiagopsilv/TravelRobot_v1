@@ -1,0 +1,13 @@
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\bin\Debug\netcoreapp3.1\TravelRobot.Application.deps.json
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\bin\Debug\netcoreapp3.1\TravelRobot.Application.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\bin\Debug\netcoreapp3.1\TravelRobot.Application.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\bin\Debug\netcoreapp3.1\TravelRobot.Domain.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\bin\Debug\netcoreapp3.1\TravelRobot.Domain.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\obj\Debug\netcoreapp3.1\TravelRobot.Application.csproj.AssemblyReference.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\obj\Debug\netcoreapp3.1\TravelRobot.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\obj\Debug\netcoreapp3.1\TravelRobot.Application.AssemblyInfoInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\obj\Debug\netcoreapp3.1\TravelRobot.Application.AssemblyInfo.cs
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\obj\Debug\netcoreapp3.1\TravelRobot.Application.csproj.CoreCompileInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\obj\Debug\netcoreapp3.1\TravelRobot.Application.csproj.CopyComplete
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\obj\Debug\netcoreapp3.1\TravelRobot.Application.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Application\obj\Debug\netcoreapp3.1\TravelRobot.Application.pdb

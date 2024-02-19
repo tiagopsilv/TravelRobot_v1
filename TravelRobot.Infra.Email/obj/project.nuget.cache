@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "L0P8kQu/aI5SNlKkHoAdwlD6SVQyhXT1NkOrsusIV9PnJ1SVyrcG7ivDTFP3shdpcIOrZyYwP2W1u0P3IcJ2Ug==",
+  "success": true,
+  "projectFilePath": "D:\\Projetos\\Viagem\\TravelRobot_v1\\TravelRobot\\TravelRobot.Infra.Email\\TravelRobot.Infra.Email.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dell\\.nuget\\packages\\serilog\\2.10.0\\serilog.2.10.0.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\serilog.sinks.console\\4.0.1\\serilog.sinks.console.4.0.1.nupkg.sha512",
+    "C:\\Users\\Dell\\.nuget\\packages\\serilog.sinks.file\\5.0.0\\serilog.sinks.file.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

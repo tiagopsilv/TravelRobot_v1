@@ -1,0 +1,10 @@
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\bin\Debug\netcoreapp3.1\TravelRobot.Domain.deps.json
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\bin\Debug\netcoreapp3.1\TravelRobot.Domain.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\bin\Debug\netcoreapp3.1\TravelRobot.Domain.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\obj\Debug\netcoreapp3.1\TravelRobot.Domain.csproj.AssemblyReference.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\obj\Debug\netcoreapp3.1\TravelRobot.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\obj\Debug\netcoreapp3.1\TravelRobot.Domain.AssemblyInfoInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\obj\Debug\netcoreapp3.1\TravelRobot.Domain.AssemblyInfo.cs
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\obj\Debug\netcoreapp3.1\TravelRobot.Domain.csproj.CoreCompileInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\obj\Debug\netcoreapp3.1\TravelRobot.Domain.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Domain\obj\Debug\netcoreapp3.1\TravelRobot.Domain.pdb

@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Service.Console", "TravelRobot\TravelRobot.Service.Console.csproj", "{ADA1A6FC-F544-42A2-A415-20523F516028}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Domain", "TravelRobot.Domain\TravelRobot.Domain.csproj", "{C076F597-3A10-4AA1-BDA4-4CADD9942BB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Infra.DataExtraction.Decolar", "TravelRobot.DataExtraction.Decolar\TravelRobot.Infra.DataExtraction.Decolar.csproj", "{7779071D-079F-44A6-8569-800C3B529B26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Infra.File", "TravelRobot.Infra.CSV\TravelRobot.Infra.File.csproj", "{95045FFB-5178-4682-B11E-85611772FFC5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Infra.DataExtraction.Smiles", "TravelRobot.Infra.DataExtraction.Smiles\TravelRobot.Infra.DataExtraction.Smiles.csproj", "{53864D98-3DE1-445A-8570-C1555A938290}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Infra.ReadData", "TravelRobot.Infra.ReadData.Decolar\TravelRobot.Infra.ReadData.csproj", "{8CD3AE44-6891-41FE-BBFC-41E7735D055E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Infra.Email", "TravelRobot.Infra.Email\TravelRobot.Infra.Email.csproj", "{A767D989-BB87-40A1-8F6F-1E739268BC3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Infra.Selenium", "TravelRobot.Infra.Selenium\TravelRobot.Infra.Selenium.csproj", "{8F81DAF2-2650-450D-95CD-22A981B00142}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Application", "TravelRobot.Application\TravelRobot.Application.csproj", "{07DD23ED-1A0D-4B3E-880C-AEB8D09D9029}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.CrossCutting", "TravelRobot.CrossCutting\TravelRobot.CrossCutting.csproj", "{FA7DAD6D-EA0D-4144-944E-5D8AF19AE399}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Infra.DataExtraction.Google", "TravelRobot.Infra.DataExtraction.Google\TravelRobot.Infra.DataExtraction.Google.csproj", "{123BA189-83F2-45EA-B339-EFA14E96E3B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelRobot.Infra.DataExtraction.Booking", "TravelRobot.Infra.DataExtraction.Booking\TravelRobot.Infra.DataExtraction.Booking.csproj", "{722B525F-88C9-4E43-B4B2-3F59D7116BF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelRobot.Infra.Parameter", "TravelRobot.Infra.Parameter\TravelRobot.Infra.Parameter.csproj", "{0C996B92-092A-4A3D-B011-B15537A814AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADA1A6FC-F544-42A2-A415-20523F516028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA1A6FC-F544-42A2-A415-20523F516028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA1A6FC-F544-42A2-A415-20523F516028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA1A6FC-F544-42A2-A415-20523F516028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C076F597-3A10-4AA1-BDA4-4CADD9942BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C076F597-3A10-4AA1-BDA4-4CADD9942BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C076F597-3A10-4AA1-BDA4-4CADD9942BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C076F597-3A10-4AA1-BDA4-4CADD9942BB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7779071D-079F-44A6-8569-800C3B529B26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7779071D-079F-44A6-8569-800C3B529B26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7779071D-079F-44A6-8569-800C3B529B26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7779071D-079F-44A6-8569-800C3B529B26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95045FFB-5178-4682-B11E-85611772FFC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95045FFB-5178-4682-B11E-85611772FFC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95045FFB-5178-4682-B11E-85611772FFC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95045FFB-5178-4682-B11E-85611772FFC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53864D98-3DE1-445A-8570-C1555A938290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53864D98-3DE1-445A-8570-C1555A938290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53864D98-3DE1-445A-8570-C1555A938290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53864D98-3DE1-445A-8570-C1555A938290}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CD3AE44-6891-41FE-BBFC-41E7735D055E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CD3AE44-6891-41FE-BBFC-41E7735D055E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CD3AE44-6891-41FE-BBFC-41E7735D055E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CD3AE44-6891-41FE-BBFC-41E7735D055E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A767D989-BB87-40A1-8F6F-1E739268BC3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A767D989-BB87-40A1-8F6F-1E739268BC3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A767D989-BB87-40A1-8F6F-1E739268BC3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A767D989-BB87-40A1-8F6F-1E739268BC3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F81DAF2-2650-450D-95CD-22A981B00142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F81DAF2-2650-450D-95CD-22A981B00142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F81DAF2-2650-450D-95CD-22A981B00142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F81DAF2-2650-450D-95CD-22A981B00142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07DD23ED-1A0D-4B3E-880C-AEB8D09D9029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07DD23ED-1A0D-4B3E-880C-AEB8D09D9029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07DD23ED-1A0D-4B3E-880C-AEB8D09D9029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07DD23ED-1A0D-4B3E-880C-AEB8D09D9029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA7DAD6D-EA0D-4144-944E-5D8AF19AE399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA7DAD6D-EA0D-4144-944E-5D8AF19AE399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA7DAD6D-EA0D-4144-944E-5D8AF19AE399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA7DAD6D-EA0D-4144-944E-5D8AF19AE399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{123BA189-83F2-45EA-B339-EFA14E96E3B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{123BA189-83F2-45EA-B339-EFA14E96E3B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{123BA189-83F2-45EA-B339-EFA14E96E3B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{123BA189-83F2-45EA-B339-EFA14E96E3B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{722B525F-88C9-4E43-B4B2-3F59D7116BF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{722B525F-88C9-4E43-B4B2-3F59D7116BF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{722B525F-88C9-4E43-B4B2-3F59D7116BF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{722B525F-88C9-4E43-B4B2-3F59D7116BF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C996B92-092A-4A3D-B011-B15537A814AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C996B92-092A-4A3D-B011-B15537A814AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C996B92-092A-4A3D-B011-B15537A814AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C996B92-092A-4A3D-B011-B15537A814AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {283B2416-FBD6-4A1A-A758-7CCEE870BC0B}
+	EndGlobalSection
+EndGlobal

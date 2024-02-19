@@ -1,0 +1,46 @@
+[
+  {
+    "Enable": "false",
+    "CityCode": "CIT_5227",
+    "CityName": "NovaYork",
+    "TextForSearch": "Cidade de Nova York",
+    "ReferencePointA": "Times Square, Manhattan, NY, EUA",
+    "StartDate": "2023-03-24",
+    "EndDate": "2023-03-24",
+    "RangeSearchType": "JustOneDay",
+    "WebSiteURL": "https://www.decolar.com"
+  },
+  {
+    "Enable": "false",
+    "CityCode": "",
+    "CityName": "Carmel",
+    "TextForSearch": "Carmel-by-the-Sea",
+    "ReferencePointA": "Ocean Ave, Carmel-by-the-Sea, CA, EUA",
+    "StartDate": "2023-03-21",
+    "EndDate": "2023-03-21",
+    "RangeSearchType": "JustOneDay",
+    "WebSiteURL": "https://www.decolar.com"
+  },
+  {
+    "Enable": "false",
+    "CityCode": "",
+    "CityName": "SantaBarbara",
+    "TextForSearch": "Santa Bárbara, CA, EUA",
+    "ReferencePointA": "Santa Bárbara, CA, EUA, Dolphin Fountain",
+    "StartDate": "2023-03-22",
+    "EndDate": "2023-03-22",
+    "RangeSearchType": "JustOneDay",
+    "WebSiteURL": "https://www.decolar.com"
+  },
+  {
+    "Enable": "true",
+    "CityCode": "",
+    "CityName": "LosAngeles",
+    "TextForSearch": "Santa Mônica, CA, EUA",
+    "ReferencePointA": "Hollywood, Los Angeles, CA, EUA",
+    "StartDate": "2023-03-23",
+    "EndDate": "2023-03-25",
+    "RangeSearchType": "JustOneDay",
+    "WebSiteURL": "https://www.decolar.com"
+  }
+]

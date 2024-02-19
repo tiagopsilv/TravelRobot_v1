@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.16.1"/>
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1"/>
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TravelRobot.Domain\TravelRobot.Domain.csproj"/>
+    <ProjectReference Include="..\TravelRobot.Infra.Selenium\TravelRobot.Infra.Selenium.csproj"/>
+  </ItemGroup>
+</Project>

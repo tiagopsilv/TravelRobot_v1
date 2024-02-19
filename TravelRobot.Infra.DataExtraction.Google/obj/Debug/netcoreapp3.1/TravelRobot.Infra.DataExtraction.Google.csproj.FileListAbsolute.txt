@@ -1,0 +1,13 @@
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\bin\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.deps.json
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\bin\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\bin\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\bin\Debug\netcoreapp3.1\TravelRobot.Domain.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\bin\Debug\netcoreapp3.1\TravelRobot.Domain.pdb
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.csproj.AssemblyReference.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.AssemblyInfoInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.AssemblyInfo.cs
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.csproj.CoreCompileInputs.cache
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.csproj.CopyComplete
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.dll
+D:\Projetos\Viagem\TravelRobot_v1\TravelRobot\TravelRobot.Infra.DataExtraction.Google\obj\Debug\netcoreapp3.1\TravelRobot.Infra.DataExtraction.Google.pdb
