@@ -1,0 +1,45 @@
+# Seletores CSS dos sites. Quando um site mudar o layout, ajuste aqui, sem tocar no código.
+
+[decolar]
+result = "div.results-cluster-container"
+name = ".accommodation-name.-eva-3-ellipsis"
+rating = ".tooltip-text.-eva-3-mb-xsm"
+payment_conditions = ".eva-3-p.-eva-3-mt-xsm"
+people = ".eva-3-p.-eva-3-tc-gray-0.first-message"
+price = ".main-value"
+
+[google_hotels]
+check_in_input = "input[aria-label='Fazer check-in']"
+check_out_input = "input[aria-label='Fazer check-out']"
+hotel_card = "div.pjDrrc"
+hotel_link = ".aS3xV.lRagtb.xl0RMe"
+hotel_name = ".BgYkof.ogfYpf.ykx2he"
+hotel_rating = ".KFi5wf.lA0BZ"
+prices_tab = "#prices"
+offer = "div.ADs2Tc"
+offer_price = ".nDkDDb"
+offer_site = ".NiGhzc"
+offer_link = ".hUGVEe.cTvP0c"
+address = "div.K4nuhf .CFH2De"
+reviews_tab = "#reviews"
+reviews_block = "span#reviews:has(.FBsWCd)"
+reviews_summary = "[aria-label*='estrelas em']"
+topic_button = "button:has(.m1GHmf)"
+topic_label = ".m1GHmf"
+topic_positive_class = "HPIhNd"
+topic_negative_class = "lErJIb"
+other_site = ".TL1fMd:has(.xtsqwb)"
+other_site_name = ".xtsqwb"
+other_site_score = ".s97yQ"
+
+[google_maps]
+distance = ".ivN21e.tUEI8e.fontBodyMedium"
+
+[smiles]
+url = "https://www.smiles.com.br/promocao"
+# As classes da Smiles são geradas a cada build; por isso os seletores usam atributos e posição.
+card = "a[data-test-idpromotion]"
+type = "[data-testid='card-container'] > div:nth-of-type(2) > div:nth-of-type(1)"
+title = "[data-testid='card-container'] > div:nth-of-type(2) > div:nth-of-type(2)"
+text = "[data-testid='card-container'] > div:nth-of-type(2) > div:nth-of-type(3)"
+validity = "[data-testid='card-container'] > div:nth-of-type(2) > div:nth-of-type(5)"

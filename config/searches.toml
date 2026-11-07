@@ -1,0 +1,48 @@
+# Datas: "AAAA-MM-DD". start_date também aceita "today".
+# end_date também aceita "end_of_month" e "end_of_year".
+# range_type: "single" (uma estadia) ou "weekly" (uma estadia por semana no período).
+
+[settings]
+output_dir = "output"
+log_dir = "logs"
+headless = true
+concurrency = 4
+timeout_seconds = 30
+decolar_max_pages = 25
+
+[[search]]
+enabled = false
+city_name = "NovaYork"
+city_code = "CIT_5227"
+text_for_search = "Cidade de Nova York"
+reference_point = "Times Square, Manhattan, NY, EUA"
+start_date = "2027-03-24"
+end_date = "2027-03-25"
+range_type = "single"
+
+[[search]]
+enabled = false
+city_name = "Carmel"
+text_for_search = "Carmel-by-the-Sea"
+reference_point = "Ocean Ave, Carmel-by-the-Sea, CA, EUA"
+start_date = "2027-03-21"
+end_date = "2027-03-22"
+range_type = "single"
+
+[[search]]
+enabled = false
+city_name = "SantaBarbara"
+text_for_search = "Santa Bárbara, CA, EUA"
+reference_point = "Santa Bárbara, CA, EUA, Dolphin Fountain"
+start_date = "2027-03-22"
+end_date = "2027-03-23"
+range_type = "single"
+
+[[search]]
+enabled = true
+city_name = "LosAngeles"
+text_for_search = "Santa Mônica, CA, EUA"
+reference_point = "Hollywood, Los Angeles, CA, EUA"
+start_date = "2027-03-23"
+end_date = "2027-03-25"
+range_type = "single"
