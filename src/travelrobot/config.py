@@ -3,7 +3,7 @@ from __future__ import annotations
 import tomllib
 from datetime import date
 from pathlib import Path
-from typing import Literal
+from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 
@@ -96,7 +96,7 @@ class EsferaSelectors(_Strict):
 
 class FeedSelectors(_Strict):
     name: str = Field(min_length=1)
-    url: str = Field(min_length=1)
+    urls: list[Annotated[str, Field(min_length=1)]] = Field(min_length=1)
     # Só entram notícias com alguma destas categorias do feed; vazio aceita todas.
     categories: list[str] = []
     max_age_days: int = Field(default=3, ge=1)

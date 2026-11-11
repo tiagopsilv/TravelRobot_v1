@@ -45,7 +45,7 @@ As promoções saem em `FrequentFlyersList_AAAAMMDD.csv`, uma linha por promoç�
 - **Esfera:** lê as campanhas de acúmulo pela mesma API que a página de campanhas usa. Entram só as campanhas de até 62 dias: as demais são a pontuação normal da loja ou ações internas. A Esfera não publica as promoções de transferência nesse formato.
 - **Blogs (Passageiro de Primeira, Pontos pra Voar e Melhores Cartões):** os feeds RSS dão as notícias do dia, inclusive de programas sem fonte própria, como LATAM Pass e Azul. O feed não traz validade, então entram as notícias dos últimos 3 dias que citam um programa conhecido. Programa, tipo e benefício são deduzidos do título, e a coluna `fim` só é preenchida em "último dia" e "só hoje". Os feeds ficam em `config/selectors.toml`, onde dá para incluir outros.
 
-LATAM Pass e Azul Fidelidade não têm fonte própria: os dois sites bloqueiam o navegador automatizado (HTTP 403). As promoções deles chegam pelo Radar PPV e pelos blogs.
+LATAM Pass e Azul Fidelidade não têm fonte oficial acessível: os sites dos dois respondem HTTP 403 ao robô, inclusive no `robots.txt`, e o robô não contorna bloqueios. As promoções deles chegam pelo Radar PPV e pelos blogs, incluindo os feeds do Pontos pra Voar dedicados a cada um dos dois programas. Cada blog pode ter vários feeds, e uma notícia repetida entre eles entra uma vez.
 
 ## Situação das fontes
 

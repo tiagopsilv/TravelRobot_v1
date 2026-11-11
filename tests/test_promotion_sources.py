@@ -116,7 +116,7 @@ RSS = """<rss><channel>
 
 
 def feed(categories=("Promoções",)):
-    return FeedSelectors(name="Blog", url="https://blog/feed", categories=list(categories))
+    return FeedSelectors(name="Blog", urls=["https://blog/feed"], categories=list(categories))
 
 
 def test_feed_keeps_recent_items_about_programs():
@@ -281,3 +281,84 @@ def test_esfera_first_page_failure_is_reported():
 )
 def test_avios_alone_does_not_identify_a_program(title, programs, kind):
     assert (", ".join(feeds._programs(title)), infer_kind(title)) == (programs, kind)
+
+
+def test_feed_source_reads_every_url_and_skips_repeated_links(monkeypatch):
+    monkeypatch.setattr(feeds, "datetime", _FrozenDatetime)
+    selectors = FeedSelectors(name="Blog", urls=["geral", "azul"], categories=["Promoções"])
+    source = feeds.FeedSource(None, selectors)
+    fetched = []
+
+    async def fetch(url):
+        fetched.append(url)
+        return RSS  # o mesmo conteúdo nos dois feeds: cada notícia deve entrar uma vez
+
+    source._fetch = fetch
+    promotions = asyncio.run(source.collect())
+    assert fetched == ["geral", "azul"]
+    assert [p.link for p in promotions] == ["https://blog/1", "https://blog/3"]
+
+
+def _feed_source(monkeypatch, urls, contents, categories=("Promoções",)):
+    monkeypatch.setattr(feeds, "datetime", _FrozenDatetime)
+    source = feeds.FeedSource(None, FeedSelectors(name="Blog", urls=urls, categories=list(categories)))
+
+    async def fetch(url):
+        content = contents[url]
+        if isinstance(content, Exception):
+            raise content
+        return content
+
+    source._fetch = fetch
+    return source
+
+
+def _rss(*items):
+    body = "".join(
+        f"<item><title>{title}</title><link>{link}</link><category>{category}</category>"
+        "<pubDate>Tue, 10 Nov 2026 08:00:00 -0300</pubDate></item>"
+        for title, link, category in items
+    )
+    return f"<rss><channel>{body}</channel></rss>"
+
+
+@pytest.mark.parametrize("failing", ["primeiro", "ultimo"])
+def test_feed_failure_keeps_the_other_feeds(monkeypatch, failing):
+    contents = {
+        "primeiro": _rss(("LATAM Pass oferece 25% de bônus", "https://blog/latam", "Promoções")),
+        "ultimo": _rss(("Azul oferece 120% de bônus", "https://blog/azul", "Promoções")),
+    }
+    contents[failing] = SourceBlocked("Blog recusou o acesso automatizado (HTTP 403).")
+    source = _feed_source(monkeypatch, ["primeiro", "ultimo"], contents)
+    assert len(asyncio.run(source.collect())) == 1
+
+
+def test_feed_errors_surface_when_every_feed_fails(monkeypatch):
+    source = _feed_source(monkeypatch, ["a", "b"], {"a": RuntimeError("HTTP 500"), "b": "<rss><nao-fecha>"})
+    with pytest.raises(Exception):
+        asyncio.run(source.collect())
+
+
+def test_feed_items_without_link_are_kept_when_titles_differ(monkeypatch):
+    contents = {
+        "a": _rss(("LATAM Pass oferece 25% de bônus", "", "Promoções")),
+        "b": _rss(("Azul oferece 120% de bônus", "", "Promoções"), ("LATAM Pass oferece 25% de bônus", "", "Promoções")),
+    }
+    source = _feed_source(monkeypatch, ["a", "b"], contents)
+    assert [p.program for p in asyncio.run(source.collect())] == ["LATAM Pass", "Azul Fidelidade"]
+
+
+def test_ppv_program_feeds_are_not_filtered_by_parent_category(selectors):
+    # Posts da subcategoria podem trazer só "LATAM Pass" ou "Azul Fidelidade", sem a categoria-pai.
+    ppv = next(feed for feed in selectors.feeds if feed.name == "Pontos pra Voar")
+    xml = _rss(
+        ("LATAM Pass com 25% de bônus no Itaú", "https://ppv/1", "LATAM Pass"),
+        ("Azul oferece 120% de bônus no Inter", "https://ppv/2", "Azul Fidelidade"),
+        ("Mercado Livre libera cupons", "https://ppv/3", "Mercado Livre"),
+    )
+    assert [p.link for p in feeds.parse_feed(xml, ppv, NOW)] == ["https://ppv/1", "https://ppv/2"]
+
+
+def test_feed_url_cannot_be_empty():
+    with pytest.raises(ValueError):
+        FeedSelectors(name="Blog", urls=[""])

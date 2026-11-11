@@ -101,12 +101,33 @@ class FeedSource:
         self.name = selectors.name
 
     async def collect(self) -> list[Promotion]:
-        xml = await with_retry(self._fetch, self.name)
-        return parse_feed(xml, self._selectors, datetime.now())
+        """Lê os feeds do blog um a um; a mesma notícia em dois feeds (geral e de um programa) entra uma vez.
 
-    async def _fetch(self) -> str:
+        Um feed que falha não apaga os outros: a falha vai para o log e a coleta segue. Só quando
+        todos falham o erro sobe para o relatório da execução.
+        """
+        now = datetime.now()
+        promotions, seen, errors = [], set(), []
+        for url in self._selectors.urls:
+            try:
+                xml = await with_retry(lambda: self._fetch(url), self.name)
+                items = parse_feed(xml, self._selectors, now)
+            except Exception as error:
+                logger.warning("%s: o feed %s falhou: %s", self.name, url, error)
+                errors.append(error)
+                continue
+            for promotion in items:
+                key = promotion.link or promotion.title  # sem link, a notícia é identificada pelo título
+                if key not in seen:
+                    seen.add(key)
+                    promotions.append(promotion)
+        if errors and len(errors) == len(self._selectors.urls):
+            raise errors[-1]
+        return promotions
+
+    async def _fetch(self, url: str) -> str:
         async with self._browser.page() as page:
-            response = await page.request.get(self._selectors.url)
+            response = await page.request.get(url)
             raise_if_blocked(response, self.name)
             if not response.ok:
                 raise RuntimeError(f"{self.name}: HTTP {response.status}")

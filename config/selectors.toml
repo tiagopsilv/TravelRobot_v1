@@ -56,16 +56,22 @@ campaigns_api = "https://apigw.esfera.com.vc/bff-campaign/ehis/campaign"
 
 # Feeds RSS dos blogs de milhas. Sem validade no feed: entram as notícias dos últimos
 # max_age_days dias que citam um programa conhecido (veja PROGRAMS em sources/feeds.py).
+# Os feeds por programa cobrem LATAM Pass e Azul, cujos sites bloqueiam o robô.
+# Uma notícia que aparece em dois feeds do mesmo blog entra uma vez.
 [[feeds]]
 name = "Passageiro de Primeira"
-url = "https://passageirodeprimeira.com/categorias/promocoes/transferencia-de-pontos/feed/"
+urls = ["https://passageirodeprimeira.com/categorias/promocoes/feed/"]
 
 [[feeds]]
 name = "Pontos pra Voar"
-url = "https://pontospravoar.com/category/promocoes/feed/"
-categories = ["Programas de Fidelidade", "Acumulando Milhas"]
+urls = [
+    "https://pontospravoar.com/category/promocoes/feed/",
+    "https://pontospravoar.com/category/programas-de-fidelidade/latam-pass/feed/",
+    "https://pontospravoar.com/category/programas-de-fidelidade/azul-fidelidade/feed/",
+]
+# Sem filtro de categoria: posts das subcategorias (LATAM Pass, Azul Fidelidade) nem sempre listam a
+# categoria-pai. Notícias fora do tema, como cupons do Mercado Livre, já saem por não citarem um programa.
 
 [[feeds]]
 name = "Melhores Cartões"
-url = "https://www.melhorescartoes.com.br/feed"
-categories = ["Milhas e pontos"]
+urls = ["https://www.melhorescartoes.com.br/c/promocoes-milhas/feed"]
