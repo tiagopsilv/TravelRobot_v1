@@ -26,6 +26,8 @@ class OfferSource(Protocol):
 
 
 class PromotionSource(Protocol):
+    name: str
+
     async def collect(self) -> list[Promotion]: ...
 
 
@@ -36,7 +38,7 @@ class DistanceSource(Protocol):
 @dataclass(slots=True)
 class Sources:
     offers: list[OfferSource]
-    promotions: PromotionSource
+    promotions: list[PromotionSource]
     distances: DistanceSource
 
 
@@ -118,8 +120,12 @@ async def run_pipeline(
     report = RunReport()
 
     logger.info("Etapa 1/3: promoções")
-    promotions = await _guarded(sources.promotions.collect, "Promoções", report) or []
+    results = await asyncio.gather(
+        *(_guarded(source.collect, f"Promoções {source.name}", report) for source in sources.promotions)
+    )
+    promotions = [promotion for found in results for promotion in found or []]
     report.promotions = len(promotions)
+    report.promotions_by_source = dict(Counter(promotion.source for promotion in promotions))
     if promotions:
         save_promotions(promotions, output_dir, run_date)
 

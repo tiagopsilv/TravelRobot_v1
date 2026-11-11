@@ -57,18 +57,26 @@ class HotelOffer:
 
 @dataclass(frozen=True, slots=True)
 class Promotion:
+    """Uma promoção de pontos ou milhas, vinda do próprio programa ou de um agregador."""
+
     executed_at: datetime
+    source: str
     program: str
-    type: str
-    title: str
-    text: str
-    validity: str
-    link: str
+    kind: str
+    partner: str | None = None
+    title: str = ""
+    description: str = ""
+    benefit: str = ""  # como o site descreve: "Bonificação até 120%"
+    value: Decimal | None = None  # o número do benefício, para ordenar e filtrar
+    start: date | None = None
+    end: date | None = None
+    link: str = ""
 
 
 @dataclass(slots=True)
 class RunReport:
     promotions: int = 0
+    promotions_by_source: dict[str, int] = field(default_factory=dict)
     offers: int = 0
     offers_by_source: dict[str, int] = field(default_factory=dict)
     hotels_with_reviews: int = 0

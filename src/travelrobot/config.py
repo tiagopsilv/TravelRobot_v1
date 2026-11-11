@@ -77,11 +77,29 @@ class GoogleMapsSelectors(_Strict):
 
 class SmilesSelectors(_Strict):
     url: str
-    card: str
-    type: str
-    title: str
-    text: str
-    validity: str
+    promotions_response: str
+
+
+class PontosPraVoarSelectors(_Strict):
+    posts_api: str
+    title_prefix: str
+
+
+class LiveloSelectors(_Strict):
+    partners_url: str
+    offers_url: str
+
+
+class EsferaSelectors(_Strict):
+    campaigns_api: str
+
+
+class FeedSelectors(_Strict):
+    name: str = Field(min_length=1)
+    url: str = Field(min_length=1)
+    # Só entram notícias com alguma destas categorias do feed; vazio aceita todas.
+    categories: list[str] = []
+    max_age_days: int = Field(default=3, ge=1)
 
 
 class Selectors(_Strict):
@@ -89,6 +107,10 @@ class Selectors(_Strict):
     google_hotels: GoogleHotelsSelectors
     google_maps: GoogleMapsSelectors
     smiles: SmilesSelectors
+    pontos_pra_voar: PontosPraVoarSelectors
+    livelo: LiveloSelectors
+    esfera: EsferaSelectors
+    feeds: list[FeedSelectors] = []
 
 
 class AppConfig(_Strict):

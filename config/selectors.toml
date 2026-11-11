@@ -37,9 +37,35 @@ distance = ".ivN21e.tUEI8e.fontBodyMedium"
 
 [smiles]
 url = "https://www.smiles.com.br/promocao"
-# As classes da Smiles são geradas a cada build; por isso os seletores usam atributos e posição.
-card = "a[data-test-idpromotion]"
-type = "[data-testid='card-container'] > div:nth-of-type(2) > div:nth-of-type(1)"
-title = "[data-testid='card-container'] > div:nth-of-type(2) > div:nth-of-type(2)"
-text = "[data-testid='card-container'] > div:nth-of-type(2) > div:nth-of-type(3)"
-validity = "[data-testid='card-container'] > div:nth-of-type(2) > div:nth-of-type(5)"
+# Trecho da URL do JSON que a página baixa para montar os cartões de promoção.
+promotions_response = "/structured-content-folders/8372340/structured-contents"
+
+[pontos_pra_voar]
+posts_api = "https://pontospravoar.com/wp-json/wp/v2/posts"
+# Título do resumo diário; também é o termo usado na busca de posts.
+title_prefix = "Radar PPV"
+
+[livelo]
+# Páginas Next.js: os dados vêm em <script id="__NEXT_DATA__">.
+partners_url = "https://www.livelo.com.br/juntar-pontos/todos-os-parceiros"
+offers_url = "https://www.livelo.com.br/ofertas"
+
+[esfera]
+# API que a página https://www.esfera.com.vc/esfera-lp_campanhas usa para listar as campanhas.
+campaigns_api = "https://apigw.esfera.com.vc/bff-campaign/ehis/campaign"
+
+# Feeds RSS dos blogs de milhas. Sem validade no feed: entram as notícias dos últimos
+# max_age_days dias que citam um programa conhecido (veja PROGRAMS em sources/feeds.py).
+[[feeds]]
+name = "Passageiro de Primeira"
+url = "https://passageirodeprimeira.com/categorias/promocoes/transferencia-de-pontos/feed/"
+
+[[feeds]]
+name = "Pontos pra Voar"
+url = "https://pontospravoar.com/category/promocoes/feed/"
+categories = ["Programas de Fidelidade", "Acumulando Milhas"]
+
+[[feeds]]
+name = "Melhores Cartões"
+url = "https://www.melhorescartoes.com.br/feed"
+categories = ["Milhas e pontos"]
