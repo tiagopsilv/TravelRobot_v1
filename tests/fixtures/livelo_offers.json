@@ -1,0 +1,502 @@
+{
+ "props": {
+  "pageProps": {
+   "device": {
+    "type": "desktop"
+   },
+   "page": {
+    "components": [
+     {
+      "type": "cbc_tabs_cross",
+      "props": {
+       "tabColor": "primary",
+       "tabs": [
+        {
+         "title": "Melhores ofertas",
+         "ariaLabel": "Melhores ofertas",
+         "components": [
+          {
+           "type": "cbc_previsibility",
+           "props": {
+            "ContentTypeUid": "cbc_previsibility",
+            "uid": "blt690b1fc0f6e0c5ec",
+            "Version": 1796,
+            "card": {
+             "orderBy": "position",
+             "colorBundle": "black",
+             "countdownStyle": {
+              "icon": null,
+              "onColor": false,
+              "showDate": true,
+              "hasBackgroundColor": true
+             },
+             "children": [
+              {
+               "ContentTypeUid": "cb_previsibility",
+               "uid": "blt62f7f280cf03f73b",
+               "Version": 3,
+               "countdown": {
+                "startDate": null,
+                "endDate": null
+               },
+               "recommendationPersonalization": {
+                "linkedToNext": false,
+                "subject": null,
+                "partner": "default",
+                "propensityEstimation": "default",
+                "weight": null
+               },
+               "status": {
+                "closed": {
+                 "badgesSelect": []
+                },
+                "forceClose": false,
+                "variations": [
+                 {
+                  "status": "Vigente",
+                  "statusCard": "active",
+                  "title": "O melhor da Black Friday é ganhar pontos em todas as compras",
+                  "Metadata": {
+                   "uid": "cs74ee50311940b476"
+                  },
+                  "description": "<p>Compre e ganhe: 11 pontos por real com Clube Livelo e 10 pontos por real demais clientes</p>",
+                  "image": {
+                   "uid": "bltf4a6c5af36420d3c",
+                   "filename": "09112026-665-306x154vitrineprevisibilidade1x.webp",
+                   "title": "09112026-665-306x154vitrineprevisibilidade1x.webp",
+                   "updatedAt": "2026-11-09T21:57:55.865Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/bltf4a6c5af36420d3c/6af241e3bb192b8bf658d95b/09112026-665-306x154vitrineprevisibilidade1x.webp"
+                  },
+                  "imageAppDisabled": {
+                   "uid": "bltf4a6c5af36420d3c",
+                   "filename": "09112026-665-306x154vitrineprevisibilidade1x.webp",
+                   "title": "09112026-665-306x154vitrineprevisibilidade1x.webp",
+                   "updatedAt": "2026-11-09T21:57:55.865Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/bltf4a6c5af36420d3c/6af241e3bb192b8bf658d95b/09112026-665-306x154vitrineprevisibilidade1x.webp"
+                  },
+                  "imagePosition": "center",
+                  "badgesSelect": [],
+                  "configsBadges": {
+                   "primaryBadge": null,
+                   "secondaryBadge": "collect-points",
+                   "newBadgeMode": "auto"
+                  },
+                  "button": {
+                   "redirectText": "Compre e pontue",
+                   "redirectLink": "https://www.livelo.com.br/10-pra-1",
+                   "iconPosition": "right",
+                   "icon": null,
+                   "tagging": {
+                    "customTitle": "compre-e-pontue-10:1-10-11",
+                    "customIdmkt": "cep-CDC-15928"
+                   }
+                  },
+                  "buttonApp": [
+                   {
+                    "text": "Compre e pontue",
+                    "Metadata": {
+                     "uid": "cs13f43e36cf061973"
+                    },
+                    "redirect": "/genericPageM@S/mobile_page/10-pra-1",
+                    "iconPosition": "right",
+                    "icon": null,
+                    "tagging": {
+                     "customTitle": "compre-e-pontue-10:1-10-11",
+                     "customIdmkt": "cep-CDC-15928"
+                    }
+                   }
+                  ]
+                 }
+                ]
+               },
+               "tags": [],
+               "taxonomies": [],
+               "title": "[AP] Previsibilidade - 10 pra 1 Novembro (CDC15928)",
+               "updatedAt": "2026-11-09T23:01:24.829Z"
+              },
+              {
+               "ContentTypeUid": "cb_previsibility",
+               "uid": "bltf1e209c6dd19dd64",
+               "Version": 3,
+               "countdown": {
+                "startDate": null,
+                "endDate": null
+               },
+               "recommendationPersonalization": {
+                "linkedToNext": false,
+                "subject": null,
+                "partner": "default",
+                "propensityEstimation": "default",
+                "weight": null
+               },
+               "status": {
+                "closed": {
+                 "badgesSelect": []
+                },
+                "forceClose": false,
+                "variations": [
+                 {
+                  "status": null,
+                  "statusCard": "active",
+                  "title": "Ganhe até 70% de bônus e planeje sua viagem com a Smiles",
+                  "Metadata": {
+                   "uid": "cs6031777af37093d3"
+                  },
+                  "description": "<p>Cadastre-se na campanha e transfira seus pontos</p>",
+                  "image": {
+                   "uid": "bltfa44eb436fd0cb7b",
+                   "filename": "306x154_vitrine_previsibilidade_smiles.webp",
+                   "title": "306x154_vitrine_previsibilidade_smiles.webp",
+                   "updatedAt": "2026-11-09T10:33:15.247Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/bltfa44eb436fd0cb7b/6af1a16bbb192be5e258d48c/306x154_vitrine_previsibilidade_smiles.webp"
+                  },
+                  "imageAppDisabled": {
+                   "uid": "bltf611f1f362453102",
+                   "filename": "306x154_vitrine_previsibilidade_smiles.webp",
+                   "title": "306x154_vitrine_previsibilidade_smiles.webp",
+                   "updatedAt": "2026-11-09T10:33:26.419Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/bltf611f1f362453102/6af1a176371a18b2016112ed/306x154_vitrine_previsibilidade_smiles.webp"
+                  },
+                  "imagePosition": "center",
+                  "badgesSelect": [],
+                  "configsBadges": {
+                   "primaryBadge": null,
+                   "secondaryBadge": "use-points",
+                   "newBadgeMode": "auto"
+                  },
+                  "button": {
+                   "redirectText": "Planejar viagem",
+                   "redirectLink": "https://www.livelo.com.br/livelo-para-parceiros/smiles/SMLTransfer",
+                   "iconPosition": "right",
+                   "icon": null,
+                   "tagging": {
+                    "customTitle": "Smiles-Institucional-09-11-26",
+                    "customIdmkt": "aerea-CDC16333"
+                   }
+                  },
+                  "buttonApp": [
+                   {
+                    "text": "Planejar viagem",
+                    "Metadata": {
+                     "uid": "csfe62cf6e582cf7b9"
+                    },
+                    "redirect": "/transferencia/partnerTransferDetailsV2/SMLTransfer",
+                    "iconPosition": "right",
+                    "icon": null,
+                    "tagging": {
+                     "customTitle": "Smiles-Institucional-09-11-26",
+                     "customIdmkt": "aerea-CDC16333"
+                    }
+                   }
+                  ]
+                 }
+                ]
+               },
+               "tags": [],
+               "taxonomies": [],
+               "title": "[AP] Previsibilidade - Smiles Institucional 70% (CDC16333)",
+               "updatedAt": "2026-11-09T21:35:54.255Z"
+              },
+              {
+               "ContentTypeUid": "cb_previsibility",
+               "uid": "blt0bd7cc80f9518c45",
+               "Version": 2,
+               "countdown": {
+                "startDate": null,
+                "endDate": null
+               },
+               "recommendationPersonalization": {
+                "linkedToNext": false,
+                "subject": null,
+                "partner": "default",
+                "propensityEstimation": "default",
+                "weight": null
+               },
+               "status": {
+                "closed": {
+                 "badgesSelect": []
+                },
+                "forceClose": false,
+                "variations": [
+                 {
+                  "status": null,
+                  "statusCard": "active",
+                  "title": "Garanta novos looks e ganhe em suas compras no Mercado Livre:",
+                  "description": "<p>2 pontos por real na categoria Moda e 1 ponto a cada 2 reais demais categorias</p>",
+                  "image": {
+                   "uid": "blt80f4d6fc19b7724d",
+                   "filename": "306x154_vitrine_previsibilidade_1x.webp",
+                   "title": "306x154_vitrine_previsibilidade_1x.webp",
+                   "updatedAt": "2026-11-06T17:14:22.394Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/blt80f4d6fc19b7724d/6aee0aeee90eec485a1fca99/306x154_vitrine_previsibilidade_1x.webp"
+                  },
+                  "imageAppDisabled": {
+                   "uid": "blta92ab2103130b716",
+                   "filename": "306x154_vitrine_previsibilidade_1x.webp",
+                   "title": "306x154_vitrine_previsibilidade_1x.webp",
+                   "updatedAt": "2026-11-06T17:14:30.502Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/blta92ab2103130b716/6aee0af61a6f6e0e2653db07/306x154_vitrine_previsibilidade_1x.webp"
+                  },
+                  "imagePosition": "center",
+                  "badgesSelect": [],
+                  "configsBadges": {
+                   "primaryBadge": null,
+                   "secondaryBadge": "collect-points",
+                   "newBadgeMode": "auto"
+                  },
+                  "button": {
+                   "redirectText": "Compre e pontue",
+                   "redirectLink": "https://www.livelo.com.br/juntar-pontos/parceiros/mercado-livre/MCL",
+                   "iconPosition": "right",
+                   "icon": null,
+                   "tagging": {
+                    "customTitle": "compre-e-pontue-09-11",
+                    "customIdmkt": "cep-CDC-16117"
+                   }
+                  },
+                  "buttonApp": [
+                   {
+                    "text": "Compre e pontue",
+                    "redirect": "/ganhe-pontos-compre-pontue/MCL",
+                    "iconPosition": "right",
+                    "icon": null,
+                    "tagging": {
+                     "customTitle": "compre-e-pontue-09-11",
+                     "customIdmkt": "cep-CDC-16117"
+                    },
+                    "Metadata": {
+                     "uid": "csd67ba9f5d17e16dd"
+                    }
+                   }
+                  ],
+                  "Metadata": {
+                   "uid": "csad70efc6689c96c3"
+                  }
+                 }
+                ]
+               },
+               "tags": [],
+               "taxonomies": [],
+               "title": "[AP] - Previsibilidade - Mercado Livre (CDC-16117)",
+               "updatedAt": "2026-11-06T17:15:10.786Z"
+              },
+              {
+               "ContentTypeUid": "cb_previsibility",
+               "uid": "bltf0ca2890f65f4410",
+               "Version": 2,
+               "countdown": {
+                "startDate": null,
+                "endDate": null
+               },
+               "recommendationPersonalization": {
+                "linkedToNext": false,
+                "subject": null,
+                "partner": "default",
+                "propensityEstimation": "default",
+                "weight": null
+               },
+               "status": {
+                "closed": {
+                 "badgesSelect": []
+                },
+                "forceClose": false,
+                "variations": [
+                 {
+                  "status": null,
+                  "statusCard": "active",
+                  "title": "Ganhe 5 pontos por real com o cupom LIVELO",
+                  "description": "<p>Aproveite as ofertas e pontue em suas compras.</p>",
+                  "image": {
+                   "uid": "bltd98bd2ba4ae48aab",
+                   "filename": "306x154_vitrine_previsibilidade_carrefour_mercado_1x.webp",
+                   "title": "306x154_vitrine_previsibilidade_carrefour_mercado_1x.webp",
+                   "updatedAt": "2026-11-09T18:19:15.149Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/bltd98bd2ba4ae48aab/6af20ea350d81ee2232d147f/306x154_vitrine_previsibilidade_carrefour_mercado_1x.webp"
+                  },
+                  "imageAppDisabled": {
+                   "uid": "blt49f6519512084b9c",
+                   "filename": "306x154_vitrine_previsibilidade_carrefour_mercado_1x.webp",
+                   "title": "306x154_vitrine_previsibilidade_carrefour_mercado_1x.webp",
+                   "updatedAt": "2026-11-09T18:19:24.797Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/blt49f6519512084b9c/6af20eac50d81e0ff02d1483/306x154_vitrine_previsibilidade_carrefour_mercado_1x.webp"
+                  },
+                  "imagePosition": "center",
+                  "badgesSelect": [],
+                  "configsBadges": {
+                   "primaryBadge": null,
+                   "secondaryBadge": "collect-points",
+                   "newBadgeMode": "auto"
+                  },
+                  "button": {
+                   "redirectText": "Compre e pontue",
+                   "redirectLink": "https://www.livelo.com.br/juntar-pontos/parceiros/carrefour/CRM",
+                   "iconPosition": "right",
+                   "icon": null,
+                   "tagging": {
+                    "customTitle": "compre-e-pontue-crm-10-11",
+                    "customIdmkt": "cep-CDC-15331"
+                   }
+                  },
+                  "buttonApp": [
+                   {
+                    "text": "Compre e pontue",
+                    "redirect": "/ganhe-pontos-compre-pontue/CRM",
+                    "iconPosition": "right",
+                    "icon": null,
+                    "tagging": {
+                     "customTitle": "compre-e-pontue-crm-10-11",
+                     "customIdmkt": "cep-CDC-15331"
+                    },
+                    "Metadata": {
+                     "uid": "csa48cc386952282c7"
+                    }
+                   }
+                  ],
+                  "Metadata": {
+                   "uid": "csad337286bcd68e3f"
+                  }
+                 }
+                ]
+               },
+               "tags": [],
+               "taxonomies": [],
+               "title": "[AP] - Previsibilidade - Carrefour Mercado (CDC-15331)",
+               "updatedAt": "2026-11-09T18:20:20.872Z"
+              },
+              {
+               "ContentTypeUid": "cb_previsibility",
+               "uid": "blt959ccf666272bed2",
+               "Version": 5,
+               "countdown": {
+                "startDate": null,
+                "endDate": null
+               },
+               "recommendationPersonalization": {
+                "linkedToNext": false,
+                "subject": null,
+                "partner": "default",
+                "propensityEstimation": "default",
+                "weight": null
+               },
+               "status": {
+                "closed": {
+                 "badgesSelect": []
+                },
+                "forceClose": false,
+                "variations": [
+                 {
+                  "status": "Vigente",
+                  "statusCard": "active",
+                  "title": "Ganhe em suas compras:",
+                  "Metadata": {
+                   "uid": "cs156f4141cf7d8094"
+                  },
+                  "description": "<p>5 pontos por real com Clube Livelo e 4 pontos por real demais clientes</p>",
+                  "image": {
+                   "uid": "bltcc97a65b3eccfc43",
+                   "filename": "306x154_vitrine_previsibilidade_carrefour_mercado_1x-1.webp",
+                   "title": "306x154_vitrine_previsibilidade_carrefour_mercado_1x-1.webp",
+                   "updatedAt": "2026-11-09T12:02:13.485Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/bltcc97a65b3eccfc43/6af1b645a9851dcaba0bda25/306x154_vitrine_previsibilidade_carrefour_mercado_1x-1.webp"
+                  },
+                  "imageAppDisabled": {
+                   "uid": "bltfecbf648f8eabf19",
+                   "filename": "306x154_vitrine_previsibilidade_carrefour_mercado_1x-1.webp",
+                   "title": "306x154_vitrine_previsibilidade_carrefour_mercado_1x-1.webp",
+                   "updatedAt": "2026-11-09T12:02:21.178Z",
+                   "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/bltfecbf648f8eabf19/6af1b64d7c35ac078a2f91e3/306x154_vitrine_previsibilidade_carrefour_mercado_1x-1.webp"
+                  },
+                  "imagePosition": "center",
+                  "badgesSelect": [],
+                  "configsBadges": {
+                   "primaryBadge": null,
+                   "secondaryBadge": "collect-points",
+                   "newBadgeMode": "auto"
+                  },
+                  "button": {
+                   "redirectText": "Compre e pontue",
+                   "redirectLink": "https://www.livelo.com.br/juntar-pontos/parceiros/magalu/MZL",
+                   "iconPosition": "right",
+                   "icon": null,
+                   "tagging": {
+                    "customTitle": "compre-e-pontue-mzl-09-11",
+                    "customIdmkt": "cep-CDC-15669"
+                   }
+                  },
+                  "buttonApp": [
+                   {
+                    "text": "Compre e pontue",
+                    "Metadata": {
+                     "uid": "cs3d28098e22e635ad"
+                    },
+                    "redirect": "/ganhe-pontos-compre-pontue/MZL",
+                    "iconPosition": "right",
+                    "icon": null,
+                    "tagging": {
+                     "customTitle": "compre-e-pontue-mzl-09-11",
+                     "customIdmkt": "cep-CDC-15669"
+                    }
+                   }
+                  ]
+                 }
+                ]
+               },
+               "tags": [],
+               "taxonomies": [],
+               "title": "[AP] Previsibilidade - Magalu (CDC-15669)",
+               "updatedAt": "2026-11-09T13:10:08.414Z"
+              }
+             ]
+            },
+            "customSection": "app-ofertas",
+            "margin": 0,
+            "mobileSpacingConfig": {
+             "topSpacing": 16,
+             "bottomSpacing": 16
+            },
+            "recommendationPersonalization": {
+             "partner": null,
+             "propensityEstimation": null,
+             "subject": null,
+             "weight": null,
+             "linkedToNext": false
+            },
+            "subtitle": "As melhores ofertas para usar ou juntar pontos",
+            "tags": [],
+            "taxonomies": [],
+            "title": "[AP] Agrupador Previsibilidade - Ofertas [PRINCIPAIS OFERTAS] (GERAL)",
+            "updatedAt": "2026-11-10T14:25:11.950Z",
+            "vitrineTitle": [
+             {
+              "text": "Você não pode perder!",
+              "Metadata": {
+               "uid": "cs0be48024115bb491"
+              },
+              "link": [],
+              "redirectApp": []
+             }
+            ]
+           }
+          }
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "isActiveProxyImg": false
+  },
+  "__N_SSP": true
+ },
+ "page": "/[[...url]]",
+ "query": {
+  "url": [
+   "ofertas"
+  ]
+ },
+ "isFallback": false,
+ "isExperimentalCompile": false,
+ "gssp": true,
+ "scriptLoader": []
+}

@@ -1,0 +1,214 @@
+{
+ "props": {
+  "pageProps": {
+   "device": {
+    "type": "desktop"
+   },
+   "page": {
+    "components": [
+     {
+      "type": "cb_partner_list",
+      "props": {
+       "ContentTypeUid": "cb_partner_list",
+       "uid": "bltf664416636b772ef",
+       "Version": 31,
+       "doLogin": {
+        "buttonLogin": "Fazer login",
+        "buttonRegister": "Criar conta",
+        "description": "Para conferir seus parceiros favoritos você precisa estar logado.",
+        "icon": {
+         "uid": "blt7d9f58ab55f935d0",
+         "filename": "user-spot.svg",
+         "title": "user-spot.svg",
+         "updatedAt": "2024-09-13T20:55:17.222Z",
+         "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/blt7d9f58ab55f935d0/66e4a6b557e12243aa07c831/user-spot.svg"
+        },
+        "title": "Faça login no site!"
+       },
+       "isPartnerProfileEnabled": true,
+       "noPartnerFound": {
+        "description": "Verifique se o nome foi digitado corretamente ou tente buscar por outro parceiro.",
+        "icon": {
+         "uid": "bltb903e01893f5554a",
+         "description": "",
+         "filename": "lupa-spot.svg",
+         "title": "lupa-spot.svg",
+         "updatedAt": "2025-05-08T12:33:00.502Z",
+         "url": "https://images.contentstack.io/v3/assets/blt2aea50371ca8d246/bltb903e01893f5554a/681ca47c97b83e149ef14045/lupa-spot.svg"
+        },
+        "title": "Não encontramos nenhum resultado para"
+       },
+       "partnerList": {
+        "clubTitleText": "Clube",
+        "newPartnerText": "Nova",
+        "promotionTagText": "Promoção",
+        "buttonLabel": "Ir para regras do parceiro",
+        "parityPromotionText": "{{PARITY}}{{POINT}}",
+        "parityText": "{{SEPARATOR}} {{PARITY}} {{POINT}} por R$ {{CURRENCY_VALUE}}",
+        "parityUsText": "{{SEPARATOR}} {{PARITY}} {{POINT}} por U$ {{CURRENCY_VALUE}}",
+        "partnerPageAddress": "/ganhe-pontos-compre-pontue/",
+        "pointText": " ponto",
+        "pointsText": " pontos",
+        "untilText": "Até "
+       },
+       "searchPartner": {
+        "_trimmed": true
+       },
+       "searchStatusTexts": {
+        "login": {
+         "description": "Para conferir seus parceiros favoritos você precisa estar logado.",
+         "title": "Faça login"
+        },
+        "noFavoritePartners": {
+         "description": "Explore nossos parceiros e adicione seus preferidos para acessar mais rápido quando quiser.",
+         "title": "Nenhum parceiro favoritado por aqui ainda"
+        },
+        "noPartnersFound": {
+         "description": "Confira o termo digitado e tente novamente ou dê uma chance para nossas sugestões a seguir. Lembre de buscar por parceiros e não por produtos, tá?",
+         "title": "Não encontramos o que você procura"
+        }
+       },
+       "shouldRenderCardButton": true,
+       "tags": [
+        "compre-e-pontue"
+       ],
+       "title": "C&P - Site/App - Listagem de Parceiros",
+       "toast": {
+        "actionButton": "Entendi",
+        "addText": "Esse parceiro foi adicionado aos favoritos",
+        "removeText": "Esse parceiro foi removido dos favoritos"
+       },
+       "updatedAt": "2026-11-04T09:34:34.878Z",
+       "configPartners": [
+        {
+         "id": "SPA",
+         "image": "https://www.livelo.com.br/file/general/config_SPA.png",
+         "name": "ADCOS",
+         "createdDate": "2024-11-27T21:23:59.425Z",
+         "link": "https://livelo.com.br/juntar-pontos/parceiros/adcos/SPA",
+         "categories": "todos wellness saude modaebeleza perfumariaecosmeticos",
+         "enableBenefits": true,
+         "partnerDetailsPage": "https://livelo.com.br/juntar-pontos/parceiros/adcos/SPA",
+         "parity": {
+          "currency": "R$",
+          "currencyValue": 1,
+          "parity": 8,
+          "parityClub": 11,
+          "legalTerms": "<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(24, 24, 24);\">Campanha válida em 10/11/2026. Ganhe 11 pontos por real gasto exclusivo para assinantes Clube Livelo e 10 pontos por real para demais clientes. Utilize o cupom LIVELO. Consulte o regulamento.</span></p>",
+          "separator": "=",
+          "parityBau": 1,
+          "promotion": true,
+          "separatorSlug": "IGUAL",
+          "dateStart": "2026-11-10-00:00:00 GMT-03:00",
+          "dateEnd": "2026-11-10-23:59:00 GMT-03:00",
+          "activeCampaign": "PROMOTION_CLUB",
+          "categoryParities": []
+         }
+        },
+        {
+         "id": "ARA",
+         "image": "https://partners-profile.livelo.com.br/ara/image.webp",
+         "name": "Aramis",
+         "createdDate": "2024-07-26T22:11:45.482Z",
+         "link": "https://livelo.com.br/juntar-pontos/parceiros/aramis/ARA",
+         "categories": "modaebeleza modaeacessorios todos",
+         "enableBenefits": true,
+         "partnerDetailsPage": "https://livelo.com.br/juntar-pontos/parceiros/aramis/ARA",
+         "parity": {
+          "currency": "R$",
+          "currencyValue": 1,
+          "parity": 10,
+          "parityClub": 11,
+          "legalTerms": "<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(24, 24, 24);\">Campanha válida em 10/11/2026. Ganhe 11 pontos a cada real gasto, exclusivo para assinantes do Clube Livelo e 10 pontos por real demais clientes. Utilize o cupom LIVELO. Consulte o regulamento.</span></p>",
+          "separator": "=",
+          "parityBau": 1,
+          "promotion": true,
+          "separatorSlug": "IGUAL",
+          "dateStart": "2026-11-10-00:00:00 GMT-03:00",
+          "dateEnd": "2026-11-10-23:59:00 GMT-03:00",
+          "activeCampaign": "PROMOTION_CLUB",
+          "categoryParities": []
+         }
+        },
+        {
+         "id": "ACS",
+         "image": "https://www.livelo.com.br/file/general/config_ACS_asics_192x120.jpg",
+         "name": "Asics",
+         "createdDate": "2021-02-22T16:06:23.581Z",
+         "link": "https://livelo.com.br/juntar-pontos/parceiros/asics/ACS",
+         "categories": "modaebeleza modaeacessorios esporteelazer todos wellness",
+         "enableBenefits": true,
+         "partnerDetailsPage": "https://livelo.com.br/juntar-pontos/parceiros/asics/ACS",
+         "parity": {
+          "currency": "R$",
+          "currencyValue": 1,
+          "parity": 3,
+          "parityClub": 5,
+          "legalTerms": "<p><span style=\"background-color: rgb(255, 255, 255); color: rgb(24, 24, 24);\">Válido de 02 a 30/11/2026. Ganhe 5 pontos por real gasto exclusivo para assinantes Clube Livelo e 3 pontos por real para demais clientes. Utilize o cupom LIVELO. Consulte o regulamento.</span></p>",
+          "separator": "=",
+          "parityBau": 1,
+          "promotion": true,
+          "separatorSlug": "IGUAL",
+          "dateStart": "2026-11-02-00:00:00 GMT-03:00",
+          "dateEnd": "2026-11-30-23:59:00 GMT-03:00",
+          "activeCampaign": "PROMOTION_CLUB",
+          "categoryParities": []
+         }
+        },
+        {
+         "id": "ABC",
+         "image": "https://partners-profile.livelo.com.br/abc/image.jpeg",
+         "name": "ABC da Construcao",
+         "createdDate": "1900-01-01T00:00:00Z",
+         "link": "https://livelo.com.br/juntar-pontos/parceiros/abc-da-construcao/ABC",
+         "categories": "todos construcaoeferramentas casaedecoracao",
+         "enableBenefits": true,
+         "partnerDetailsPage": "https://livelo.com.br/juntar-pontos/parceiros/abc-da-construcao/ABC",
+         "parity": {
+          "currency": "R$",
+          "currencyValue": 1,
+          "parity": 1,
+          "parityClub": 1,
+          "legalTerms": "<p><br></p>",
+          "separator": "=",
+          "parityBau": 1,
+          "promotion": false,
+          "separatorSlug": "IGUAL",
+          "activeCampaign": "BAU",
+          "categoryParities": []
+         }
+        },
+        {
+         "id": "CIB",
+         "image": "https://www.livelo.com.br/file/general/config_CIB_20241015-162251.png",
+         "name": "Ciclic Seguros – Bike",
+         "createdDate": "2023-12-13T22:02:41.582Z",
+         "link": "https://livelo.com.br/juntar-pontos/parceiros/ciclic-bike/CIB",
+         "categories": "seguros todos",
+         "enableBenefits": true,
+         "partnerDetailsPage": "https://livelo.com.br/juntar-pontos/parceiros/ciclic-bike/CIB",
+         "parity": null
+        }
+       ],
+       "searchParams": {},
+       "favoritePartners": []
+      }
+     }
+    ]
+   },
+   "isActiveProxyImg": false
+  },
+  "__N_SSP": true
+ },
+ "page": "/[[...url]]",
+ "query": {
+  "url": [
+   "juntar-pontos",
+   "todos-os-parceiros"
+  ]
+ },
+ "isFallback": false,
+ "isExperimentalCompile": false,
+ "gssp": true,
+ "scriptLoader": []
+}

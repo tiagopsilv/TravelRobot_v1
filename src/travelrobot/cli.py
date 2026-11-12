@@ -13,8 +13,12 @@ from travelrobot.dates import build_windows
 from travelrobot.models import RunReport, SearchWindow
 from travelrobot.pipeline import Sources, run_pipeline
 from travelrobot.sources.decolar import DecolarSource
+from travelrobot.sources.esfera import EsferaSource
+from travelrobot.sources.feeds import FeedSource
 from travelrobot.sources.google_hotels import GoogleHotelsSource
 from travelrobot.sources.google_maps import GoogleMapsSource
+from travelrobot.sources.livelo import livelo_sources
+from travelrobot.sources.pontos_pra_voar import PontosPraVoarSource
 from travelrobot.sources.smiles import SmilesSource
 
 logger = logging.getLogger("travelrobot")
@@ -57,7 +61,13 @@ async def _run(
                 GoogleHotelsSource(browser, selectors.google_hotels),
                 DecolarSource(browser, selectors.decolar, settings.decolar_max_pages),
             ],
-            promotions=SmilesSource(browser, selectors.smiles),
+            promotions=[
+                SmilesSource(browser, selectors.smiles),
+                PontosPraVoarSource(browser, selectors.pontos_pra_voar),
+                *livelo_sources(browser, selectors.livelo),
+                EsferaSource(browser, selectors.esfera),
+                *(FeedSource(browser, feed) for feed in selectors.feeds),
+            ],
             distances=GoogleMapsSource(browser, selectors.google_maps),
         )
         return await run_pipeline(windows, sources, settings.output_dir, today)
@@ -69,6 +79,8 @@ def _log_summary(report: RunReport) -> None:
         report.promotions, report.offers, report.hotels,
         report.hotels_with_reviews, report.hotels_with_distance,
     )  # fmt: skip
+    for source, count in sorted(report.promotions_by_source.items()):
+        logger.info("  %s: %d promoções", source, count)
     for source, count in sorted(report.offers_by_source.items()):
         logger.info("  %s: %d ofertas", source, count)
     if report.failures:

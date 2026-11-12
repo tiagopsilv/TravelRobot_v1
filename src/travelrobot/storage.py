@@ -16,7 +16,10 @@ HOTEL_COLUMNS = [
     "condicoes_pagamento", "noites", "pessoas", "endereco", "distancia_km", "avaliacao_nota",
     "avaliacao_quantidade", "temas_positivos", "temas_negativos", "notas_outros_sites", "link",
 ]  # fmt: skip
-PROMOTION_COLUMNS = ["data_execucao", "programa", "tipo", "titulo", "texto", "validade", "link"]
+PROMOTION_COLUMNS = [
+    "data_execucao", "fonte", "programa", "parceiro", "tipo", "titulo", "descricao", "beneficio",
+    "valor", "inicio", "fim", "link",
+]  # fmt: skip
 
 
 def _cell(value: object) -> object:
@@ -74,10 +77,14 @@ def save_hotels(offers: list[HotelOffer], directory: Path, run_date: date) -> li
 
 
 def save_promotions(promotions: list[Promotion], directory: Path, run_date: date) -> Path:
-    path = directory / f"FrequentFlyersList_Smiles_{run_date:%Y%m%d}.csv"
+    path = directory / f"FrequentFlyersList_{run_date:%Y%m%d}.csv"
     rows = [
-        [p.executed_at.date().isoformat(), p.program, p.type, p.title, p.text, p.validity, p.link]
+        [
+            p.executed_at.date().isoformat(), p.source, p.program, p.partner, p.kind, p.title,
+            p.description, p.benefit, p.value, p.start and p.start.isoformat(),
+            p.end and p.end.isoformat(), p.link,
+        ]
         for p in promotions
-    ]
+    ]  # fmt: skip
     _write_csv(path, PROMOTION_COLUMNS, rows)
     return path

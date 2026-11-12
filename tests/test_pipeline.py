@@ -29,8 +29,18 @@ class FakeOffers:
 
 
 class FakePromotions:
+    def __init__(self, name="Smiles", error=None):
+        self.name, self.error = name, error
+
     async def collect(self):
-        return [Promotion(NOW, "Smiles", "Tipo", "Título; com separador", "Texto", "Até 10", "x")]
+        if self.error:
+            raise self.error
+        return [
+            Promotion(
+                NOW, self.name, "Smiles", "Viagem", title="Título; com separador",
+                value=Decimal("120.5"), end=date(2027, 1, 31),
+            )
+        ]  # fmt: skip
 
 
 class FakeDistances:
@@ -44,8 +54,8 @@ class FakeDistances:
         return Decimal("3.200")
 
 
-def sources(offers, distances=None):
-    return Sources(offers, FakePromotions(), distances or FakeDistances())
+def sources(offers, distances=None, promotions=None):
+    return Sources(offers, promotions or [FakePromotions()], distances or FakeDistances())
 
 
 def run(window, tmp_path, built):
@@ -138,9 +148,19 @@ def test_deduplicate_keeps_different_sites():
 def test_csv_escapes_separator_in_values(window, tmp_path):
     run(window, tmp_path, sources([FakeOffers("Decolar", [offer(hotel="Hotel; Plaza")])]))
     assert read_rows(tmp_path)[0]["hotel"] == "Hotel; Plaza"
-    path = tmp_path / "FrequentFlyersList_Smiles_20270101.csv"
+    path = tmp_path / "FrequentFlyersList_20270101.csv"
     with path.open(encoding="utf-8-sig", newline="") as file:
-        assert next(csv.DictReader(file, delimiter=";"))["titulo"] == "Título; com separador"
+        row = next(csv.DictReader(file, delimiter=";"))
+    assert row["titulo"] == "Título; com separador"
+    assert (row["valor"], row["fim"], row["parceiro"]) == ("120,5", "2027-01-31", "")
+
+
+def test_failing_promotion_source_does_not_stop_the_others(window, tmp_path):
+    promotions = [FakePromotions("Smiles", RuntimeError("fora do ar")), FakePromotions("Radar")]
+    report = run(window, tmp_path, sources([], promotions=promotions))
+    assert report.promotions_by_source == {"Radar": 1}
+    assert any("Promoções Smiles" in failure for failure in report.failures)
+    assert (tmp_path / "FrequentFlyersList_20270101.csv").exists()
 
 
 def test_html_is_saved_per_city(window, tmp_path):
