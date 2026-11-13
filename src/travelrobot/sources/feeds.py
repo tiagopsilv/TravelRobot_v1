@@ -15,7 +15,7 @@ from email.utils import parsedate_to_datetime
 from travelrobot.browser import Browser, raise_if_blocked, with_retry
 from travelrobot.config import FeedSelectors
 from travelrobot.models import Promotion
-from travelrobot.sources._promo_text import benefit_value, extract_benefit, infer_kind
+from travelrobot.sources._promo_text import club_only, club_value, infer_kind, parse_benefit
 
 logger = logging.getLogger(__name__)
 
@@ -51,8 +51,8 @@ def parse_feed(xml: str, selectors: FeedSelectors, now: datetime) -> list[Promot
     promotions = []
     for item in ElementTree.fromstring(xml).iter("item"):
         title = " ".join((item.findtext("title") or "").split())
-        categories = {(category.text or "").strip() for category in item.findall("category")}
-        if selectors.categories and not categories & set(selectors.categories):
+        categories = list(dict.fromkeys(filter(None, ((c.text or "").strip() for c in item.findall("category")))))
+        if selectors.categories and not set(categories) & set(selectors.categories):
             continue
         published = _published(item.findtext("pubDate"))
         if published is None or published < oldest:
@@ -63,7 +63,7 @@ def parse_feed(xml: str, selectors: FeedSelectors, now: datetime) -> list[Promot
         end = published.date() if _LAST_DAY.search(title) else None
         if end and end < now.date():
             continue
-        benefit = extract_benefit(title)
+        benefit, value, unit = parse_benefit(title)
         promotions.append(
             Promotion(
                 executed_at=now,
@@ -72,10 +72,14 @@ def parse_feed(xml: str, selectors: FeedSelectors, now: datetime) -> list[Promot
                 kind=infer_kind(title),
                 title=title,
                 benefit=benefit,
-                value=benefit_value(benefit),
-                start=published.date(),
+                value=value,
+                published=published.date(),  # a data da notícia, não o início da campanha
                 end=end,
                 link=(item.findtext("link") or "").strip(),
+                category=", ".join(categories),
+                unit=unit,
+                club_value=club_value(title),
+                club_only=club_only(title),
             )
         )
     return promotions

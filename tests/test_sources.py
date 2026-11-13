@@ -159,12 +159,16 @@ def test_smiles_keeps_only_running_promotions(selectors):
         "Seu Clube Smiles pode mais!",
     ]
     first = promotions[0]
-    assert (first.source, first.program, first.kind) == ("Smiles", "Smiles", "Viagem")
+    assert (first.source, first.program, first.category) == ("Smiles", "Smiles", "Viagem")
     assert first.description == "Smiles & Money"
     assert first.end == date(2026, 12, 31)
+    assert (first.start_time, first.end_time, first.club_only) == ("10:00", "10:00", False)
     assert first.link == "https://www.smiles.com.br/mfe/trens"
     assert promotions[1].end == PROMO_NOW.date()  # termina hoje: ainda vale
-    assert promotions[2].description == "Até 15% OFF! · Exclusiva Clube Smiles"
+    club = promotions[2]
+    assert (club.description, club.club_only, club.category, club.kind) == (
+        "Até 15% OFF!", True, "Clube Smiles", "Clubes"
+    )
 
 
 def _smiles_item(**fields):
@@ -177,7 +181,8 @@ def test_smiles_relative_link_and_missing_dates(selectors):
     )
     promotion = smiles.parse_promotions(payload, selectors.smiles, PROMO_NOW)[0]
     assert promotion.link == "https://www.smiles.com.br/x"
-    assert (promotion.start, promotion.end, promotion.kind) == (None, None, "")
+    assert (promotion.start, promotion.end, promotion.kind, promotion.category) == (None, None, "Outras", "")
+    assert (promotion.start_time, promotion.club_only) == ("", None)
 
 
 @pytest.mark.parametrize("payload", ['{"items": []}', json.dumps({"items": [_smiles_item(title="x")]})])
@@ -215,6 +220,11 @@ def test_radar_row_fields():
     assert (club.program, club.benefit, club.value) == (
         "Smiles", "Bônus ou desconto até 10.000", Decimal("10000")
     )
+    assert (club.unit, club.end_time) == ("pontos", "21:00")  # "30 de novembro (21h)"
+    assert (transfer.unit, transfer.end_time) == ("% de bônus", "")
+    assert discount.unit == "% de desconto"
+    accrual = next(p for p in promotions if p.kind == "Acúmulo de pontos")
+    assert accrual.unit == "pontos por R$"
 
 
 @pytest.mark.parametrize(

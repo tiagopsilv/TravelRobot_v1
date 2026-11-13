@@ -18,6 +18,7 @@ from travelrobot.config import PontosPraVoarSelectors
 from travelrobot.models import Promotion
 from travelrobot.parsing import parse_decimal
 from travelrobot.sources._html import soup
+from travelrobot.sources._promo_text import value_unit
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +33,7 @@ MONTHS = (
 _DAY_MONTH = re.compile(r"(\d{1,2})\s+de\s+([a-zç]+)", re.IGNORECASE)
 _FOOTNOTE = re.compile(r"[¹²³⁴⁵⁶⁷⁸⁹⁰*]+")
 _BENEFIT_HEADER = re.compile(r"\(\s*até\s*\)", re.IGNORECASE)
+_HOUR = re.compile(r"\((\d{1,2})h(\d{2})?\)")
 
 
 def latest_post(payload: str, selectors: PontosPraVoarSelectors) -> dict | None:
@@ -75,6 +77,8 @@ def _parse_table(table: Tag, kind: str, published: date, now: datetime) -> list[
             continue
         value = _FOOTNOTE.sub("", text["benefit"])
         link = cells[columns["access"]].select_one("a[href]") if "access" in columns else None
+        benefit = f"{benefit_label} até {value}" if value else ""
+        hour = _HOUR.search(text.get("validity", ""))
         promotions.append(
             Promotion(
                 executed_at=now,
@@ -82,9 +86,12 @@ def _parse_table(table: Tag, kind: str, published: date, now: datetime) -> list[
                 program=text["program"],
                 kind=kind,
                 partner=text.get("partner") or None,
-                benefit=f"{benefit_label} até {value}" if value else "",
+                benefit=benefit,
                 value=parse_decimal(value),
+                unit=value_unit(benefit),
+                end_time=f"{int(hour[1]):02d}:{hour[2] or '00'}" if hour and end else "",
                 end=end,
+                published=published,
                 description=text.get("validity", "") if end is None else "",
                 link=link["href"] if link else "",
             )

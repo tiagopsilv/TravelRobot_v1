@@ -12,7 +12,16 @@ from travelrobot.browser import SourceBlocked
 from travelrobot.config import EsferaSelectors, FeedSelectors, LiveloSelectors
 from travelrobot.pipeline import Sources, run_pipeline
 from travelrobot.sources import esfera, feeds, livelo
-from travelrobot.sources._promo_text import benefit_value, extract_benefit, infer_kind
+from travelrobot.models import Promotion
+from travelrobot.sources._promo_text import (
+    benefit_value,
+    club_only,
+    club_value,
+    extract_benefit,
+    infer_kind,
+    value_unit,
+)
+from travelrobot.storage import PROMOTION_COLUMNS, _promotion_row
 
 FIXTURES = Path(__file__).parent / "fixtures"
 NOW = datetime(2026, 11, 10, 12)
@@ -125,8 +134,8 @@ def test_feed_keeps_recent_items_about_programs():
     assert [p.link for p in promotions] == ["https://blog/1", "https://blog/3"]
     azul, livelo_day = promotions
     assert (azul.source, azul.program, azul.kind) == ("Blog", "Azul Fidelidade, Itaú", "Transferência de pontos")
-    assert (azul.benefit, azul.value, azul.start, azul.end) == (
-        "até 120% de bônus", Decimal("120"), date(2026, 11, 9), None
+    assert (azul.benefit, azul.value, azul.published, azul.start, azul.end) == (
+        "até 120% de bônus", Decimal("120"), date(2026, 11, 9), None, None
     )
     assert (livelo_day.kind, livelo_day.end) == ("Acúmulo de pontos", date(2026, 11, 10))
 
@@ -362,3 +371,188 @@ def test_ppv_program_feeds_are_not_filtered_by_parent_category(selectors):
 def test_feed_url_cannot_be_empty():
     with pytest.raises(ValueError):
         FeedSelectors(name="Blog", urls=[""])
+
+
+# Colunas de categorização e dados quantitativos
+
+
+def test_livelo_partner_quantitative_fields():
+    adcos = livelo.parse_partners(fixture("livelo_partners.json"), NOW)[0]
+    assert (adcos.unit, adcos.value, adcos.club_value, adcos.regular_value) == (
+        "pontos por R$", Decimal("8"), Decimal("11"), Decimal("1")
+    )
+    assert (adcos.start_time, adcos.end_time) == ("00:00", "23:59")
+    assert adcos.category == "wellness, saude, modaebeleza, perfumariaecosmeticos"  # sem "todos"
+    assert adcos.rules.startswith("Campanha válida em 10/11/2026.")
+    assert adcos.club_only is None  # o Clube ganha mais, mas a promoção não é exclusiva
+
+
+def test_livelo_offer_reads_club_value_from_text():
+    offers = livelo.parse_offers(fixture("livelo_offers.json"), NOW)
+    black_friday = offers[0]
+    assert (black_friday.unit, black_friday.club_value) == ("pontos por R$", Decimal("11"))
+    assert offers[1].unit == "% de bônus"
+
+
+def test_livelo_card_time_is_converted_from_utc():
+    page = _card(countdown={"startDate": None, "endDate": "2026-11-11T02:59:00Z"})
+    promotion = livelo.parse_offers(page, NOW)[0]
+    assert promotion.end_time == f"{datetime(2026, 11, 11, 2, 59, tzinfo=timezone.utc).astimezone():%H:%M}"
+
+
+def test_esfera_quantitative_fields():
+    promotions, _ = esfera.parse_campaigns(fixture("esfera_campaigns.json"), NOW)
+    nike = promotions[0]
+    assert (nike.unit, nike.start_time, nike.end_time, nike.credit_days) == ("pontos por R$", "00:00", "23:59", 45)
+    assert nike.rules == "Prazo para crédito de pontos é de 45 dias após a entrega do produto."
+    assert nike.club_value is None  # clubClientParity 0: a campanha não tem valor para o clube
+
+
+def test_feed_keeps_post_categories_and_unit():
+    azul = feeds.parse_feed(RSS, feed(), NOW)[0]
+    assert (azul.category, azul.unit) == ("Promoções, Transferência de pontos", "% de bônus")
+
+
+@pytest.mark.parametrize(
+    ("benefit", "unit"),
+    [
+        ("até 120% de bônus", "% de bônus"),
+        ("Bonificação até 25%", "% de bônus"),
+        ("Desconto até 50%", "% de desconto"),
+        ("Até 15% OFF", "% de desconto"),
+        ("até 16 pontos por real", "pontos por R$"),
+        ("8 pontos a cada 1 real para clientes em geral", "pontos por R$"),
+        ("Pontuação até 30", "pontos por R$"),
+        ("3 milhas por dólar", "pontos por US$"),
+        ("50.000 pontos", "pontos"),
+        ("Bônus ou desconto até 10.000", "pontos"),
+        ("", ""),
+    ],
+)
+def test_value_unit(benefit, unit):
+    assert value_unit(benefit) == unit
+
+
+@pytest.mark.parametrize(
+    ("text", "club", "only"),
+    [
+        ("Ganhe 11 pontos por real com Clube Livelo e 10 pontos por real demais clientes", Decimal("11"), False),
+        ("Ganhe 11 pontos por real gasto exclusivo para assinantes Clube Livelo", Decimal("11"), True),
+        ("11 pontos por real exclusivo para assinantes Clube Livelo e 10 pontos por real demais clientes",
+         Decimal("11"), False),
+        ("Oferta não exclusiva do Clube Livelo", None, False),
+        ("Oferta exclusiva do Clube Livelo, não válida para demais clientes", None, True),
+        ("Exclusivo para assinantes do Clube Smiles; não assinantes não participam", None, True),
+        ("Clube Livelo: 50% de bônus para assinantes e 30% de bônus para não assinantes", None, False),
+        # Benefício para os demais e negação no mesmo texto: ambíguo, fica vazio.
+        ("Oferta exclusiva do Clube Livelo: sem bônus para demais clientes", None, None),
+        ("Oferta exclusiva do Clube Livelo: não há desconto para não assinantes", None, None),
+        ("Oferta exclusiva do Clube Livelo: não oferece 10.000 pontos para demais clientes", None, None),
+        ("Não perca 11 pontos por real exclusivo para assinantes Clube Livelo e 10 pontos por real demais clientes",
+         Decimal("11"), False),
+        ("10 pontos por real para clientes em geral", None, None),
+        ("Oferta exclusiva para assinantes do Clube Smiles", None, True),
+        ("Livelo com 10 pontos por real", None, None),
+    ],
+)
+def test_club_value_and_club_only_from_text(text, club, only):
+    assert (club_value(text), club_only(text)) == (club, only)
+
+
+def test_promotion_row_derives_quantitative_columns():
+    promotion = Promotion(
+        NOW, "Livelo", "Livelo", "Acúmulo de pontos", partner="ADCOS", value=Decimal("8"),
+        regular_value=Decimal("3"), start=date(2026, 11, 2), end=date(2026, 11, 30), club_only=False,
+        rules="Ganhe 11 pontos. Utilize o cupom LIVELO10. Consulte o regulamento.",
+    )  # fmt: skip
+    row = dict(zip(PROMOTION_COLUMNS, _promotion_row(promotion)))
+    assert row["multiplicador"] == Decimal("2.67")
+    assert (row["duracao_dias"], row["dias_restantes"]) == (29, 20)
+    assert (row["cupom"], row["exclusivo_clube"]) == ("LIVELO10", "não")
+
+
+def test_promotion_row_leaves_unknown_values_empty():
+    promotion = Promotion(NOW, "Blog", "Smiles", "Notícia", title="Use o cupom de desconto da Smiles")
+    row = dict(zip(PROMOTION_COLUMNS, _promotion_row(promotion)))
+    assert [row[c] for c in ("multiplicador", "duracao_dias", "dias_restantes", "cupom", "exclusivo_clube")] == [
+        None, None, None, "", ""
+    ]
+
+
+# Achados da revisão do Codex sobre as colunas
+
+
+def test_livelo_partner_rate_in_dollars_per_two_units():
+    page = json.loads(fixture("livelo_partners.json"))
+    partner_list = next(
+        c["props"] for c in page["props"]["pageProps"]["page"]["components"]
+        if (c.get("props") or {}).get("ContentTypeUid") == "cb_partner_list"
+    )  # fmt: skip
+    partner_list["configPartners"][0]["parity"].update(currency="U$", currencyValue=2)
+    adcos = livelo.parse_partners(json.dumps(page), NOW)[0]
+    assert adcos.benefit.startswith("8 pontos por U$ 2")
+    assert (adcos.unit, adcos.value, adcos.club_value, adcos.regular_value) == (
+        "pontos por US$", Decimal("4"), Decimal("5.5"), Decimal("0.5")
+    )
+
+
+@pytest.mark.parametrize(
+    ("title", "benefit", "value", "unit"),
+    [
+        ("Livelo: ganhe 3 pontos por US$ 1 na Amazon", "3 pontos por US$ 1", Decimal("3"), "pontos por US$"),
+        ("Esfera: ganhe 3 pontos a cada 2 reais", "3 pontos a cada 2 reais", Decimal("1.5"), "pontos por R$"),
+        ("Smiles: 5 milhas por dólar no Ponto Frio", "5 milhas por dólar", Decimal("5"), "pontos por US$"),
+        ("Livelo oferece 104 mil pontos na assinatura", "104 mil pontos", Decimal("104000"), "pontos"),
+    ],
+)
+def test_feed_keeps_currency_and_denominator_of_the_rate(title, benefit, value, unit):
+    promotion = feeds.parse_feed(_rss((title, "https://blog/x", "Promoções")), feed(), NOW)[0]
+    assert (promotion.benefit, promotion.value, promotion.unit) == (benefit, value, unit)
+
+
+def test_livelo_offer_keeps_currency_of_the_rate():
+    card = {"statusCard": "active", "title": "Ganhe 3 pontos por US$ 1 na loja"}
+    page = _card(status={"forceClose": False, "variations": [card]})
+    promotion = livelo.parse_offers(page, NOW)[0]
+    assert (promotion.value, promotion.unit) == (Decimal("3"), "pontos por US$")
+
+
+def test_esfera_club_rate_from_text_when_numeric_field_is_zero():
+    promotions, _ = esfera.parse_campaigns(fixture("esfera_campaigns.json"), NOW)
+    hoteis = next(p for p in promotions if p.partner == "Hoteis.com")
+    assert (hoteis.value, hoteis.club_value) == (Decimal("3"), Decimal("4"))
+
+
+def test_feed_last_day_has_no_known_duration():
+    last_day = feeds.parse_feed(RSS, feed(), NOW)[1]
+    row = dict(zip(PROMOTION_COLUMNS, _promotion_row(last_day)))
+    assert (row["publicado_em"], row["inicio"], row["fim"]) == ("2026-11-10", None, "2026-11-10")
+    assert (row["duracao_dias"], row["dias_restantes"]) == (None, 0)
+
+
+@pytest.mark.parametrize(
+    ("rules", "description", "coupon"),
+    [
+        ("NAO E NECESSARIO CUPOM PARA PONTUAR", "", ""),
+        ("Use CUPOM DESCONTO na compra", "", ""),
+        ("Compra sem cupom LIVELO10 não pontua", "", "LIVELO10"),  # o código é obrigatório
+        ("Não perca: use o cupom LIVELO10", "", "LIVELO10"),
+        ("Dispensa o uso de cupom LIVELO10", "", ""),
+        ("Esta oferta não dispensa cupom LIVELO10", "", "LIVELO10"),
+        ("Não dispensa o uso de cupom LIVELO10", "", "LIVELO10"),
+        ("Não é dispensado o uso de cupom LIVELO10", "", "LIVELO10"),
+        ("Uso de cupom LIVELO10 dispensado", "", "LIVELO10"),  # a dispensa vem depois: não dá para saber
+        ("É dispensado o uso de cupom LIVELO10", "", ""),
+        ("É dispensável o uso de cupom LIVELO10", "", ""),
+        ("É indispensável o uso de cupom LIVELO10", "", "LIVELO10"),
+        ("E indispensavel o uso de cupom LIVELO10", "", "LIVELO10"),
+        ("Não é necessário cupom LIVELO10", "", ""),
+        ("Sem necessidade de cupom LIVELO10", "", ""),
+        ("Não precisa usar cupom PARA ganhar", "", ""),
+        ("Não é necessário cupom.", "Use o cupom: BLACK10", "BLACK10"),
+        ("Utilize o cupom LIVELO. Consulte o regulamento.", "cupom OUTRO", "LIVELO"),
+    ],
+)
+def test_coupon_ignores_negation_and_common_words(rules, description, coupon):
+    promotion = Promotion(NOW, "Livelo", "Livelo", "Acúmulo de pontos", rules=rules, description=description)
+    assert dict(zip(PROMOTION_COLUMNS, _promotion_row(promotion)))["cupom"] == coupon

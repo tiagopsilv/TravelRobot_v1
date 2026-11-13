@@ -37,9 +37,20 @@ As colunas `preco` e `moeda` trazem o valor como o site exibe. No Google Hotels 
 
 As avaliações vêm do resumo do Google: nota geral de 0 a 5 (`avaliacao_nota`), quantidade (`avaliacao_quantidade`), temas bem ou mal avaliados, com o número de menções (`temas_positivos`, `temas_negativos`), e notas de outros sites (`notas_outros_sites`). O Google não dá nota numérica por categoria.
 
-As promoções saem em `FrequentFlyersList_AAAAMMDD.csv`, uma linha por promoção ainda válida, com `fonte`, `programa`, `parceiro`, `tipo`, `beneficio` (como o site descreve, por exemplo "Bonificação até 120%"), `valor` (só o número, para ordenar), `inicio`, `fim` e `link`.
+As promoções saem em `FrequentFlyersList_AAAAMMDD.csv`, uma linha por promoção ainda válida. Uma coluna fica vazia quando a fonte não traz aquele dado.
 
-- **Smiles:** o robô abre a página de promoções e lê o JSON que a própria página baixa para montar os cartões, que traz datas de início e fim e categoria. Ele não chama essa API diretamente, porque o `robots.txt` da Smiles não permite URLs com parâmetros. Entram também as promoções já anunciadas que ainda vão começar, identificadas pela coluna `inicio`. A hora de encerramento não é gravada, só a data.
+| Grupo | Colunas |
+| --- | --- |
+| Identificação | `data_execucao`, `fonte`, `programa`, `parceiro`, `titulo`, `descricao`, `link` |
+| Categorização | `tipo` (acúmulo, transferência, compra de pontos, clubes), `categoria` (do site ou do post: Viagem, moda, saúde...), `exclusivo_clube` (sim/não) |
+| Benefício | `beneficio` (como o site descreve, por exemplo "Bonificação até 120%"), `valor` (o número), `unidade` (o que o número mede: `pontos por R$`, `pontos por US$`, `% de bônus`, `% de desconto` ou `pontos`) |
+| Comparação | `valor_clube` (o valor para assinantes do clube), `valor_normal` (a pontuação fora da promoção), `multiplicador` (`valor` ÷ `valor_normal`) |
+| Prazo | `publicado_em` (data do post, nos blogs e no Radar PPV), `inicio`, `hora_inicio`, `fim`, `hora_fim`, `duracao_dias` (só quando início e fim são conhecidos), `dias_restantes` (0 = acaba hoje) |
+| Condições | `prazo_credito_dias` (quando os pontos caem), `cupom`, `regras` (trecho do regulamento) |
+
+Compare `valor` só entre linhas da mesma `unidade`: 10 pontos por real e 10% de bônus não são comparáveis. As taxas são normalizadas para 1 unidade da moeda: "3 pontos a cada 2 reais" vira 1,5 pontos por R$. Em `exclusivo_clube`, "não" quer dizer que o texto oferece o benefício também a quem não assina o clube; vazio quer dizer que a fonte não informa ou que o texto é ambíguo, por exemplo quando oferece algo aos demais clientes e nega outra coisa na mesma frase. O robô deduz isso do texto, então confira o regulamento antes de decidir.
+
+- **Smiles:** o robô abre a página de promoções e lê o JSON que a própria página baixa para montar os cartões, que traz datas de início e fim e categoria. Ele não chama essa API diretamente, porque o `robots.txt` da Smiles não permite URLs com parâmetros. Entram também as promoções já anunciadas que ainda vão começar, identificadas pela coluna `inicio`. As horas de início e fim vão para `hora_inicio` e `hora_fim`.
 - **Radar PPV:** é lido pela API pública do WordPress do Pontos pra Voar, que publica o resumo à noite, então pela manhã o robô usa o do dia anterior e descarta as linhas já vencidas. Cobre acúmulo por real gasto, transferência bonificada, compra de pontos e clubes de vários programas. A validade vem sem ano, que é deduzido da data do post. O conteúdo tem direitos reservados: serve para consulta, não para republicar.
 - **Livelo:** lê os dados que o site entrega embutidos em duas páginas: a lista de parceiros, com os pontos por real e as datas de cada promoção de acúmulo, e a vitrine de ofertas, com as campanhas de transferência e clube. Nas campanhas, o benefício vem só em texto e costuma não ter data de fim.
 - **Esfera:** lê as campanhas de acúmulo pela mesma API que a página de campanhas usa. Entram só as campanhas de até 62 dias: as demais são a pontuação normal da loja ou ações internas. A Esfera não publica as promoções de transferência nesse formato.
@@ -49,7 +60,7 @@ LATAM Pass e Azul Fidelidade não têm fonte oficial acessível: os sites dos do
 
 ## Situação das fontes
 
-Resultado do último teste real, em 10/11/2026:
+Resultado do último teste real, em 13/11/2026:
 
 | Fonte | Situação |
 | --- | --- |
@@ -57,7 +68,7 @@ Resultado do último teste real, em 10/11/2026:
 | Google Maps | Funciona |
 | Smiles | Funciona |
 | Pontos pra Voar (Radar PPV) | Funciona |
-| Livelo | Funciona |
+| Livelo | Bloqueada em 13/11/2026: respondeu HTTP 403 nas duas páginas (funcionava em 12/11) |
 | Esfera | Funciona |
 | Feeds RSS dos blogs | Funcionam |
 | LATAM Pass e Azul Fidelidade | Bloqueadas: respondem HTTP 403 ao navegador automatizado |

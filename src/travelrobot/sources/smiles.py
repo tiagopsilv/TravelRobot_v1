@@ -14,11 +14,19 @@ from travelrobot.browser import Browser, raise_if_blocked, with_retry
 from travelrobot.config import SmilesSelectors
 from travelrobot.models import Promotion
 from travelrobot.sources._html import soup
+from travelrobot.sources._promo_text import infer_kind, parse_benefit
 
 logger = logging.getLogger(__name__)
 
 SOURCE = "Smiles"
 ACTIVE = "Ativa"
+# Códigos de categoria do JSON → nome legível.
+CATEGORIES = {
+    "milhas": "Milhas",
+    "Servicos": "Serviços",
+    "ClubeSmiles": "Clube Smiles",
+    "CartaoGolSmiles": "Cartão Gol Smiles",
+}
 
 
 def parse_promotions(payload: str, selectors: SmilesSelectors, now: datetime) -> list[Promotion]:
@@ -43,31 +51,45 @@ def parse_promotions(payload: str, selectors: SmilesSelectors, now: datetime) ->
             logger.debug("Smiles: promoção sem título ignorada (fim %s).", end)
             continue
         description = _plain_text(fields.get("FraseCard"))
-        if fields.get("ExclusivaClube") == "true":
-            description = " · ".join(filter(None, [description, "Exclusiva Clube Smiles"]))
+        categories = [CATEGORIES.get(category, category) for category in _categories(fields.get("Categoria"))]
+        text = f"{title} {description}"
+        benefit, value, unit = parse_benefit(text)
         link = fields.get("LinkDaPromocao", "").strip()
         promotions.append(
             Promotion(
                 executed_at=now,
                 source=SOURCE,
                 program="Smiles",
-                kind=", ".join(_categories(fields.get("Categoria"))),
+                kind=infer_kind(text, "Clubes" if "Clube Smiles" in categories else "Outras"),
                 title=title,
                 description=description,
+                benefit=benefit,
+                value=value,
                 start=_date(fields.get("DataDeInicio")),
                 end=end,
                 link=urljoin(selectors.url, link) if link else "",
+                category=", ".join(categories),
+                unit=unit,
+                club_only={"true": True, "false": False}.get(fields.get("ExclusivaClube", "")),
+                start_time=_time(fields.get("HoraDeInicio")),
+                end_time=_time(fields.get("HoraDeEncerramento")),
             )
         )
     return promotions
 
 
 def _date(value: str | None) -> date | None:
-    """"2026-11-15T00:00:00Z" vira 15/11/2026; a hora vem em outro campo e não é usada."""
+    """"2026-11-15T00:00:00Z" vira 15/11/2026; a hora vem em outro campo (_time)."""
     try:
         return date.fromisoformat(value[:10]) if value else None
     except ValueError:
         return None
+
+
+def _time(value: str | None) -> str:
+    """"10:00" fica como está; um valor fora do formato vira vazio."""
+    value = (value or "").strip()
+    return value if len(value) == 5 and value[2] == ":" and value.replace(":", "").isdigit() else ""
 
 
 def _plain_text(html: str | None) -> str:

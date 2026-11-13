@@ -71,6 +71,16 @@ class Promotion:
     start: date | None = None
     end: date | None = None
     link: str = ""
+    category: str = ""  # categoria do site (Smiles, parceiros Livelo) ou do post (blogs)
+    unit: str = ""  # o que "value" mede: "pontos por R$", "% de bônus", "% de desconto", "pontos"
+    club_value: Decimal | None = None  # o mesmo benefício para assinantes do clube do programa
+    regular_value: Decimal | None = None  # o benefício fora da promoção, para medir o ganho
+    club_only: bool | None = None  # None quando a fonte não informa
+    start_time: str = ""  # "HH:MM", no horário local
+    end_time: str = ""
+    credit_days: int | None = None  # prazo para os pontos caírem na conta
+    rules: str = ""  # trecho do regulamento que a fonte entrega
+    published: date | None = None  # data do post, nos blogs; não é o início da campanha
 
 
 @dataclass(slots=True)
