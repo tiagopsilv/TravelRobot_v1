@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from collections.abc import Iterator
 from datetime import date, datetime
 from decimal import Decimal
@@ -17,13 +18,15 @@ from travelrobot.browser import Browser, raise_if_blocked, with_retry
 from travelrobot.config import LiveloSelectors
 from travelrobot.models import Promotion
 from travelrobot.sources._html import soup
-from travelrobot.sources._promo_text import benefit_value, extract_benefit, infer_kind
+from travelrobot.sources._promo_text import club_only, club_value, infer_kind, parse_benefit
 
 logger = logging.getLogger(__name__)
 
 SOURCE = "Livelo"
 PARTNER_LIST = "cb_partner_list"
 OFFER_CARD = "cb_previsibility"
+# "2026-11-10-23:59:00 GMT-03:00": a hora dos parceiros já vem no horário de Brasília.
+_PARTNER_TIME = re.compile(r"\d{4}-\d{2}-\d{2}[-T ](\d{2}:\d{2})")
 
 
 def parse_partners(next_data: str, now: datetime) -> list[Promotion]:
@@ -37,13 +40,14 @@ def parse_partners(next_data: str, now: datetime) -> list[Promotion]:
         end = _date(parity.get("dateEnd"))
         if not parity.get("promotion") or (end and end < now.date()):
             continue
-        rate, club = parity.get("parity"), parity.get("parityClub")
-        per = f"por {parity.get('currency') or 'R$'} {parity.get('currencyValue') or 1}"
+        rate, club, regular = parity.get("parity"), parity.get("parityClub"), parity.get("parityBau")
+        currency, per_amount = parity.get("currency") or "R$", parity.get("currencyValue") or 1
+        per = f"por {currency} {per_amount}"
         benefit = f"{rate} pontos {per}"
         if club and rate is not None and club > rate:
             benefit += f" ({club} no Clube Livelo)"
-        if parity.get("parityBau"):
-            benefit += f"; normal: {parity['parityBau']}"
+        if regular:
+            benefit += f"; normal: {regular}"
         promotions.append(
             Promotion(
                 executed_at=now,
@@ -53,10 +57,17 @@ def parse_partners(next_data: str, now: datetime) -> list[Promotion]:
                 partner=(partner.get("name") or "").strip() or None,
                 title=f"{partner.get('name', '').strip()}: {rate} pontos {per}",
                 benefit=benefit,
-                value=Decimal(str(rate)) if rate is not None else None,
+                value=_per_unit(rate, per_amount),
                 start=_date(parity.get("dateStart")),
                 end=end,
                 link=partner.get("partnerDetailsPage") or partner.get("link") or "",
+                category=_partner_categories(partner.get("categories")),
+                unit="pontos por US$" if "U" in currency.upper() else "pontos por R$",
+                club_value=_per_unit(club, per_amount),
+                regular_value=_per_unit(regular, per_amount),
+                start_time=_partner_time(parity.get("dateStart")),
+                end_time=_partner_time(parity.get("dateEnd")),
+                rules=_plain(parity.get("legalTerms")),
             )
         )
     return promotions
@@ -76,9 +87,9 @@ def parse_offers(next_data: str, now: datetime) -> list[Promotion]:
             continue
         seen.add(card.get("uid"))
         title = " ".join((active.get("title") or "").split())
-        description = " ".join(soup(active.get("description") or "").get_text(" ").split())
+        description = _plain(active.get("description"))
         text = f"{title} {description}"
-        benefit = extract_benefit(text)
+        benefit, value, unit = parse_benefit(text)
         promotions.append(
             Promotion(
                 executed_at=now,
@@ -88,10 +99,15 @@ def parse_offers(next_data: str, now: datetime) -> list[Promotion]:
                 title=title,
                 description=description,
                 benefit=benefit,
-                value=benefit_value(benefit),
+                value=value,
                 start=_date(countdown.get("startDate")),
                 end=end,
                 link=((active.get("button") or {}).get("redirectLink")) or "",
+                unit=unit,
+                club_value=club_value(text),
+                club_only=club_only(text),
+                start_time=_card_time(countdown.get("startDate")),
+                end_time=_card_time(countdown.get("endDate")),
             )
         )
     return promotions
@@ -130,6 +146,39 @@ def _date(value: str | None) -> date | None:
         except ValueError:
             return None
     return moment.astimezone().date() if moment.tzinfo else moment.date()
+
+
+def _card_time(value: str | None) -> str:
+    """A hora dos cartões, convertida de UTC para o horário local, como em _date."""
+    try:
+        moment = datetime.fromisoformat(value) if value else None
+    except ValueError:
+        return ""
+    if moment is None:
+        return ""
+    return f"{moment.astimezone() if moment.tzinfo else moment:%H:%M}"
+
+
+def _partner_time(value: str | None) -> str:
+    match = _PARTNER_TIME.match(value or "")
+    return match[1] if match else ""
+
+
+def _partner_categories(value: str | None) -> str:
+    """"todos wellness saude" vira "wellness, saude": "todos" é a aba que lista todos os parceiros."""
+    return ", ".join(category for category in (value or "").split() if category != "todos")
+
+
+def _per_unit(points: object, per_amount: object) -> Decimal | None:
+    """Pontos por 1 unidade da moeda: "8 pontos por U$ 2" vira 4, para comparar com as outras taxas."""
+    if not isinstance(points, (int, float)) or isinstance(points, bool) or not points:
+        return None
+    amount = Decimal(str(per_amount)) if isinstance(per_amount, (int, float)) and per_amount else Decimal(1)
+    return Decimal(str(points)) / amount
+
+
+def _plain(html: str | None) -> str:
+    return " ".join(soup(html).get_text(" ").split()) if html else ""
 
 
 class _LiveloPage:

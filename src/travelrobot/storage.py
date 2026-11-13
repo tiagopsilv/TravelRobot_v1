@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import io
 import os
+import re
 from collections import defaultdict
 from datetime import date
 from decimal import Decimal
@@ -17,9 +18,43 @@ HOTEL_COLUMNS = [
     "avaliacao_quantidade", "temas_positivos", "temas_negativos", "notas_outros_sites", "link",
 ]  # fmt: skip
 PROMOTION_COLUMNS = [
-    "data_execucao", "fonte", "programa", "parceiro", "tipo", "titulo", "descricao", "beneficio",
-    "valor", "inicio", "fim", "link",
+    "data_execucao", "fonte", "programa", "parceiro", "tipo", "categoria", "titulo", "descricao",
+    "beneficio", "valor", "unidade", "valor_clube", "valor_normal", "multiplicador", "exclusivo_clube",
+    "publicado_em", "inicio", "hora_inicio", "fim", "hora_fim", "duracao_dias", "dias_restantes",
+    "prazo_credito_dias", "cupom", "regras", "link",
 ]  # fmt: skip
+# "Utilize o cupom LIVELO" ou "cupom: BLACK10": o código vem em maiúsculas logo depois de "cupom".
+_COUPON = re.compile(r"(?i:cupom)\s*:?\s*([A-Z0-9][A-Z0-9_-]{2,})\b")
+# Só o que dispensa o cupom logo antes dele: "não é necessário cupom", "dispensa o uso de cupom".
+# "Não perca: use o cupom X" e "sem cupom X não pontua" pedem o código e não entram aqui.
+_COUPON_NOT_NEEDED = re.compile(
+    r"(?:n[aã]o\s+(?:[eé]\s+)?(?:necess[aá]ri\w*|precis\w*)|(?P<waiver>\bdispens(?:a|ado|ada|ados|adas|[aá]vel|[aá]veis)\b)|sem\s+necessidade)"
+    r"(?:\s+(?:de|do|usar|utilizar|uso|o|um|nenhum))*\s*$",
+    re.IGNORECASE,
+)
+# "não dispensa", "não é dispensado", "não será dispensado": a dispensa negada exige o código.
+_WAIVER_NEGATED = re.compile(r"n[aã]o\s+(?:\w+\s+)?$", re.IGNORECASE)
+
+
+def _coupon_not_needed(before: str) -> bool:
+    match = _COUPON_NOT_NEEDED.search(before)
+    return bool(match) and not (match["waiver"] and _WAIVER_NEGATED.search(before[: match.start()]))
+# Palavras que aparecem em maiúsculas depois de "cupom" sem serem o código.
+_NOT_A_COUPON = {
+    "DE", "DO", "DA", "E", "O", "A", "NO", "NA", "PARA", "COM", "DESCONTO", "PROMOCIONAL", "VALIDO",
+    "VÁLIDO", "NECESSARIO", "NECESSÁRIO", "EXCLUSIVO", "OFF",
+}  # fmt: skip
+
+
+def _coupon(*texts: str) -> str:
+    """O primeiro código de cupom citado, ignorando "não é necessário cupom" e palavras comuns."""
+    for text in texts:
+        for match in _COUPON.finditer(text):
+            code = match[1]
+            if code in _NOT_A_COUPON or _coupon_not_needed(text[: match.start()]):
+                continue
+            return code
+    return ""
 
 
 def _cell(value: object) -> object:
@@ -76,15 +111,22 @@ def save_hotels(offers: list[HotelOffer], directory: Path, run_date: date) -> li
     return paths
 
 
+def _promotion_row(p: Promotion) -> list[object]:
+    """Os campos da fonte e os derivados: ganho sobre o normal, duração, dias até acabar e cupom."""
+    executed = p.executed_at.date()
+    multiplier = (p.value / p.regular_value).quantize(Decimal("0.01")) if p.value and p.regular_value else None
+    return [
+        executed.isoformat(), p.source, p.program, p.partner, p.kind, p.category, p.title,
+        p.description, p.benefit, p.value, p.unit, p.club_value, p.regular_value, multiplier,
+        {True: "sim", False: "não"}.get(p.club_only, ""), p.published and p.published.isoformat(),
+        p.start and p.start.isoformat(), p.start_time, p.end and p.end.isoformat(), p.end_time,
+        (p.end - p.start).days + 1 if p.start and p.end else None,
+        (p.end - executed).days if p.end else None,
+        p.credit_days, _coupon(p.rules, p.description, p.title), p.rules, p.link,
+    ]  # fmt: skip
+
+
 def save_promotions(promotions: list[Promotion], directory: Path, run_date: date) -> Path:
     path = directory / f"FrequentFlyersList_{run_date:%Y%m%d}.csv"
-    rows = [
-        [
-            p.executed_at.date().isoformat(), p.source, p.program, p.partner, p.kind, p.title,
-            p.description, p.benefit, p.value, p.start and p.start.isoformat(),
-            p.end and p.end.isoformat(), p.link,
-        ]
-        for p in promotions
-    ]  # fmt: skip
-    _write_csv(path, PROMOTION_COLUMNS, rows)
+    _write_csv(path, PROMOTION_COLUMNS, [_promotion_row(p) for p in promotions])
     return path

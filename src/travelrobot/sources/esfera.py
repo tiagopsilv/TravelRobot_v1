@@ -18,6 +18,7 @@ from urllib.parse import urlencode
 from travelrobot.browser import Browser, raise_if_blocked, with_retry
 from travelrobot.config import EsferaSelectors
 from travelrobot.models import Promotion
+from travelrobot.sources._promo_text import parse_benefit
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +40,8 @@ def parse_campaigns(payload: str, now: datetime) -> tuple[list[Promotion], bool]
             continue
         partner = ((campaign.get("subPartner") or {}).get("subPartnerName") or campaign.get("partnerName") or "").strip()
         benefit = " · ".join(filter(None, [campaign.get("generalParity"), campaign.get("clubParity")]))
-        rate = campaign.get("partnerParity")
+        rate, club = campaign.get("partnerParity"), campaign.get("clubClientParity")
+        credit_days = campaign.get("deadlineCreditPoints")
         promotions.append(
             Promotion(
                 executed_at=now,
@@ -53,6 +55,12 @@ def parse_campaigns(payload: str, now: datetime) -> tuple[list[Promotion], bool]
                 start=start,
                 end=end,
                 link=campaign.get("urlPagePartner") or "",
+                unit="pontos por R$",
+                club_value=Decimal(str(club)) if club else _club_from_text(campaign.get("clubParity")),
+                start_time=_time(campaign.get("startDate")),
+                end_time=_time(campaign.get("deadline")),
+                credit_days=credit_days if isinstance(credit_days, int) else None,
+                rules=" ".join((campaign.get("creditPhrasePoints") or "").split()),
             )
         )
     return promotions, bool(data.get("last", True))
@@ -63,6 +71,17 @@ def _date(value: str | None) -> date | None:
         return date.fromisoformat(value[:10]) if value else None
     except ValueError:
         return None
+
+
+def _club_from_text(text: str | None) -> Decimal | None:
+    """clubClientParity às vezes vem 0 com a taxa só no texto: "4 pontos a cada 1 real para clientes clube"."""
+    _, value, unit = parse_benefit(text or "")
+    return value if unit == "pontos por R$" else None
+
+
+def _time(value: str | None) -> str:
+    """"2026-11-10T23:59:00" vira "23:59"."""
+    return value[11:16] if value and len(value) >= 16 and value[10] == "T" else ""
 
 
 class EsferaSource:
