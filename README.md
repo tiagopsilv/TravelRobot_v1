@@ -37,7 +37,9 @@ As colunas `preco` e `moeda` trazem o valor como o site exibe. No Google Hotels 
 
 As avaliações vêm do resumo do Google: nota geral de 0 a 5 (`avaliacao_nota`), quantidade (`avaliacao_quantidade`), temas bem ou mal avaliados, com o número de menções (`temas_positivos`, `temas_negativos`), e notas de outros sites (`notas_outros_sites`). O Google não dá nota numérica por categoria.
 
-As promoções saem em `FrequentFlyersList_AAAAMMDD.csv`, uma linha por promoção ainda válida. Uma coluna fica vazia quando a fonte não traz aquele dado.
+As promoções saem em `FrequentFlyersList_AAAAMMDD.csv`, uma linha por promoção ainda válida, com todas as fontes e todas as colunas. Uma coluna fica vazia quando a fonte não traz aquele dado.
+
+Cada fonte ganha também o seu próprio CSV em `output/Promocoes/`, por exemplo `FrequentFlyersList_Smiles_AAAAMMDD.csv` ou `FrequentFlyersList_PontosPraVoarRadarPPV_AAAAMMDD.csv`. Ele traz só as colunas que aquela fonte preenche, sempre na mesma ordem. Os blogs usam um layout comum de notícia. As colunas de cada arquivo estão em `SOURCE_COLUMNS` e `FEED_COLUMNS`, em `src/travelrobot/storage.py`.
 
 | Grupo | Colunas |
 | --- | --- |
