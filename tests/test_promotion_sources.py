@@ -11,7 +11,7 @@ import pytest
 from travelrobot.browser import SourceBlocked
 from travelrobot.config import EsferaSelectors, FeedSelectors, LiveloSelectors
 from travelrobot.pipeline import Sources, run_pipeline
-from travelrobot.sources import esfera, feeds, livelo
+from travelrobot.sources import esfera, feeds, livelo, pontos_pra_voar, smiles
 from travelrobot.models import Promotion
 from travelrobot.sources._promo_text import (
     benefit_value,
@@ -21,7 +21,7 @@ from travelrobot.sources._promo_text import (
     infer_kind,
     value_unit,
 )
-from travelrobot.storage import PROMOTION_COLUMNS, _promotion_row
+from travelrobot.storage import FEED_COLUMNS, PROMOTION_COLUMNS, SOURCE_COLUMNS, _promotion_row
 
 FIXTURES = Path(__file__).parent / "fixtures"
 NOW = datetime(2026, 11, 10, 12)
@@ -556,3 +556,32 @@ def test_feed_last_day_has_no_known_duration():
 def test_coupon_ignores_negation_and_common_words(rules, description, coupon):
     promotion = Promotion(NOW, "Livelo", "Livelo", "Acúmulo de pontos", rules=rules, description=description)
     assert dict(zip(PROMOTION_COLUMNS, _promotion_row(promotion)))["cupom"] == coupon
+
+
+# CSV por fonte
+
+
+def _real_promotions(selectors):
+    """As promoções de cada fonte, lidas das fixtures reais."""
+    partners = livelo.parse_partners(fixture("livelo_partners.json"), NOW)
+    offers = livelo.parse_offers(fixture("livelo_offers.json"), NOW)
+    return {
+        "Smiles": smiles.parse_promotions(fixture("smiles_promotions.json"), selectors.smiles, NOW),
+        "Livelo": partners + offers,
+        "Esfera": esfera.parse_campaigns(fixture("esfera_campaigns.json"), NOW)[0],
+        "Pontos pra Voar (Radar PPV)": pontos_pra_voar.parse_post(fixture("radar_ppv.html"), date(2026, 11, 9), NOW),
+        "Blog": feeds.parse_feed(RSS, feed(), NOW),
+    }
+
+
+def test_source_csv_columns_keep_every_field_the_source_fills(selectors):
+    for source, promotions in _real_promotions(selectors).items():
+        assert promotions, source
+        rows = [dict(zip(PROMOTION_COLUMNS, _promotion_row(p))) for p in promotions]
+        layout = SOURCE_COLUMNS.get(source, FEED_COLUMNS)
+        dropped = {
+            column for column in set(PROMOTION_COLUMNS) - set(layout)
+            if len({row[column] or None for row in rows} - {None}) > 1  # varia entre as linhas
+            or (any(row[column] for row in rows) and column not in ("fonte", "programa", "tipo"))
+        }  # fmt: skip
+        assert not dropped, (source, dropped)

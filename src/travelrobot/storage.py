@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import os
 import re
-from collections import defaultdict
+import unicodedata
+from collections import Counter, defaultdict
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
@@ -22,6 +24,34 @@ PROMOTION_COLUMNS = [
     "beneficio", "valor", "unidade", "valor_clube", "valor_normal", "multiplicador", "exclusivo_clube",
     "publicado_em", "inicio", "hora_inicio", "fim", "hora_fim", "duracao_dias", "dias_restantes",
     "prazo_credito_dias", "cupom", "regras", "link",
+]  # fmt: skip
+# Colunas do CSV de cada fonte: só as que ela preenche, numa ordem fixa para a planilha não mudar
+# de um dia para o outro. As chaves são os nomes das fontes (SOURCE de cada módulo).
+SOURCE_COLUMNS = {
+    "Smiles": [
+        "data_execucao", "tipo", "categoria", "titulo", "descricao", "beneficio", "valor", "unidade",
+        "exclusivo_clube", "inicio", "hora_inicio", "fim", "hora_fim", "duracao_dias", "dias_restantes",
+        "cupom", "link",
+    ],
+    "Livelo": [
+        "data_execucao", "parceiro", "tipo", "categoria", "titulo", "descricao", "beneficio", "valor",
+        "unidade", "valor_clube", "valor_normal", "multiplicador", "exclusivo_clube", "inicio",
+        "hora_inicio", "fim", "hora_fim", "duracao_dias", "dias_restantes", "cupom", "regras", "link",
+    ],
+    "Esfera": [
+        "data_execucao", "parceiro", "titulo", "beneficio", "valor", "unidade", "valor_clube", "inicio",
+        "hora_inicio", "fim", "hora_fim", "duracao_dias", "dias_restantes", "prazo_credito_dias", "cupom",
+        "regras", "link",
+    ],
+    "Pontos pra Voar (Radar PPV)": [
+        "data_execucao", "programa", "parceiro", "tipo", "beneficio", "valor", "unidade", "descricao",
+        "publicado_em", "fim", "hora_fim", "dias_restantes", "link",
+    ],
+}  # fmt: skip
+# Os blogs têm o nome que está em selectors.toml; todos usam as colunas de notícia.
+FEED_COLUMNS = [
+    "data_execucao", "programa", "tipo", "categoria", "titulo", "beneficio", "valor", "unidade",
+    "valor_clube", "exclusivo_clube", "publicado_em", "fim", "dias_restantes", "cupom", "link",
 ]  # fmt: skip
 # "Utilize o cupom LIVELO" ou "cupom: BLACK10": o código vem em maiúsculas logo depois de "cupom".
 _COUPON = re.compile(r"(?i:cupom)\s*:?\s*([A-Z0-9][A-Z0-9_-]{2,})\b")
@@ -126,7 +156,41 @@ def _promotion_row(p: Promotion) -> list[object]:
     ]  # fmt: skip
 
 
-def save_promotions(promotions: list[Promotion], directory: Path, run_date: date) -> Path:
-    path = directory / f"FrequentFlyersList_{run_date:%Y%m%d}.csv"
-    _write_csv(path, PROMOTION_COLUMNS, [_promotion_row(p) for p in promotions])
-    return path
+def save_promotions(promotions: list[Promotion], directory: Path, run_date: date) -> list[Path]:
+    """Grava o CSV com todas as fontes e um CSV por fonte, só com as colunas que ela preenche."""
+    stamp = f"{run_date:%Y%m%d}"
+    rows = [dict(zip(PROMOTION_COLUMNS, _promotion_row(p))) for p in promotions]
+    path = directory / f"FrequentFlyersList_{stamp}.csv"
+    _write_csv(path, PROMOTION_COLUMNS, [list(row.values()) for row in rows])
+    paths = [path]
+
+    by_source: dict[str, list[dict[str, object]]] = defaultdict(list)
+    for row in rows:
+        by_source[str(row["fonte"])].append(row)
+    names = _file_names(list(by_source))
+    for source, source_rows in by_source.items():
+        columns = SOURCE_COLUMNS.get(source, FEED_COLUMNS)
+        source_path = directory / "Promocoes" / f"FrequentFlyersList_{names[source]}_{stamp}.csv"
+        _write_csv(source_path, columns, [[row[column] for column in columns] for row in source_rows])
+        paths.append(source_path)
+    return paths
+
+
+def _file_names(sources: list[str]) -> dict[str, str]:
+    """Um nome de arquivo por fonte, sem repetir.
+
+    Fontes que viram o mesmo nome ("Blog A" e "Blog Á", ou só caixa diferente, que o Windows não
+    distingue) ganham um sufixo tirado do nome original, para uma não sobrescrever a outra.
+    """
+    names = {source: _file_name(source) for source in sources}
+    taken = Counter(name.casefold() for name in names.values())
+    return {
+        source: f"{name}_{hashlib.sha1(source.encode()).hexdigest()[:6]}" if taken[name.casefold()] > 1 else name
+        for source, name in names.items()
+    }
+
+
+def _file_name(source: str) -> str:
+    """"Pontos pra Voar (Radar PPV)" vira "PontosPraVoarRadarPPV"; "Melhores Cartões", "MelhoresCartoes"."""
+    plain = unicodedata.normalize("NFKD", source).encode("ascii", "ignore").decode()
+    return "".join(word[:1].upper() + word[1:] for word in re.findall(r"[A-Za-z0-9]+", plain)) or "Fonte"

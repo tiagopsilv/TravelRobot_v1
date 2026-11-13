@@ -1,10 +1,13 @@
 import asyncio
 import csv
+import json
 from datetime import date, datetime
 from decimal import Decimal
 
 from travelrobot.models import GuestReviews, HotelOffer, Promotion
 from travelrobot.pipeline import Sources, deduplicate, run_pipeline
+from travelrobot.sources import esfera, livelo, pontos_pra_voar, smiles
+from travelrobot.storage import FEED_COLUMNS, PROMOTION_COLUMNS, SOURCE_COLUMNS, save_promotions
 
 RUN_DATE = date(2027, 1, 1)
 NOW = datetime(2027, 1, 1, 12)
@@ -163,7 +166,62 @@ def test_failing_promotion_source_does_not_stop_the_others(window, tmp_path):
     assert (tmp_path / "FrequentFlyersList_20270101.csv").exists()
 
 
+def _csv(path):
+    with path.open(encoding="utf-8-sig", newline="") as file:
+        reader = csv.DictReader(file, delimiter=";")
+        return reader.fieldnames, list(reader)
+
+
+def test_each_promotion_source_also_gets_its_own_csv(window, tmp_path):
+    names = ["Smiles", "Pontos pra Voar (Radar PPV)", "Melhores Cartões"]
+    promotions = [FakePromotions(name) for name in names]
+    run(window, tmp_path, sources([], promotions=promotions))
+    columns, rows = _csv(tmp_path / "FrequentFlyersList_20270101.csv")
+    assert (columns, len(rows)) == (PROMOTION_COLUMNS, 3)
+
+    folder = tmp_path / "Promocoes"
+    assert sorted(path.name for path in folder.iterdir()) == [
+        "FrequentFlyersList_MelhoresCartoes_20270101.csv",
+        "FrequentFlyersList_PontosPraVoarRadarPPV_20270101.csv",
+        "FrequentFlyersList_Smiles_20270101.csv",
+    ]
+    columns, rows = _csv(folder / "FrequentFlyersList_Smiles_20270101.csv")
+    assert columns == SOURCE_COLUMNS["Smiles"]
+    assert "fonte" not in columns and "prazo_credito_dias" not in columns
+    assert (len(rows), rows[0]["titulo"], rows[0]["valor"]) == (1, "Título; com separador", "120,5")
+    columns, _ = _csv(folder / "FrequentFlyersList_MelhoresCartoes_20270101.csv")
+    assert columns == FEED_COLUMNS  # blogs: o nome vem da configuração
+
+
+def test_source_columns_match_sources_and_consolidated_csv():
+    assert set(SOURCE_COLUMNS) == {smiles.SOURCE, livelo.SOURCE, esfera.SOURCE, pontos_pra_voar.SOURCE}
+    for columns in [*SOURCE_COLUMNS.values(), FEED_COLUMNS]:
+        assert set(columns) <= set(PROMOTION_COLUMNS) and len(set(columns)) == len(columns)
+
+
 def test_html_is_saved_per_city(window, tmp_path):
     run(window, tmp_path, sources([FakeOffers("Decolar", [offer()])]))
     html = (tmp_path / "Htmls" / "HtmlHotel_LosAngeles_20270101.html").read_text(encoding="utf-8")
     assert "<p>Hotel A</p>" in html
+
+
+def test_sources_with_names_that_normalize_alike_get_separate_files(tmp_path):
+    names = ["Blog A", "Blog Á", "blog a", "Smiles"]
+    promotions = [Promotion(NOW, name, "Smiles", "Notícia", title=name) for name in names]
+    paths = save_promotions(promotions, tmp_path, date(2027, 1, 1))
+    assert len(paths) == len(set(path.name.casefold() for path in paths)) == 5  # consolidado + 4 fontes
+    assert (tmp_path / "Promocoes" / "FrequentFlyersList_Smiles_20270101.csv") in paths
+    titles = sorted(_csv(path)[1][0]["titulo"] for path in paths[1:])
+    assert titles == sorted(names)  # nenhum arquivo sobrescreveu outro
+    assert len(_csv(paths[0])[1]) == 4
+
+
+def test_source_csv_keeps_coupon_extracted_by_the_parser(selectors, tmp_path):
+    fields = {"PromocaoAtivaOuEncerrada": "Ativa", "TituloCard": "Use o cupom SMILES10 na compra de milhas"}
+    payload = json.dumps({"items": [{"contentFields": [
+        {"name": name, "contentFieldValue": {"data": value}} for name, value in fields.items()
+    ]}]})  # fmt: skip
+    promotions = smiles.parse_promotions(payload, selectors.smiles, NOW)
+    save_promotions(promotions, tmp_path, date(2027, 1, 1))
+    _, rows = _csv(tmp_path / "Promocoes" / "FrequentFlyersList_Smiles_20270101.csv")
+    assert rows[0]["cupom"] == "SMILES10"
